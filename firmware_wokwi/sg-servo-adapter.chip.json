@@ -1,0 +1,10 @@
+{
+  "name": "SaltGuard V1 ON/OFF to Servo PWM (DEMO)",
+  "author": "SaltGuard",
+  "pins": [
+    "IN",
+    "GND",
+    "",
+    "OUT"
+  ]
+}

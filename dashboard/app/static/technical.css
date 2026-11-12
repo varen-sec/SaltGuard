@@ -1,0 +1,24 @@
+/* Mobile-first technical workspace sharing the farmer visual language. */
+.tech-panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:14px;box-shadow:var(--shadow)}
+.tech-panel h2{font-size:17px;margin:0 0 14px;color:var(--forest)}
+.tech-note{font-size:13px;color:#697d6e;line-height:1.55;margin:2px 0 16px}
+.tech-stat{display:flex;align-items:start;justify-content:space-between;gap:15px;border-bottom:1px solid #ecf0eb;padding:14px 0;font-size:13px}
+.tech-stat:last-child{border-bottom:0}.tech-stat strong{color:#1b5940;text-align:right}.tech-stat code{font-size:11px;max-width:57%;overflow-wrap:anywhere;color:#326348;text-align:right}
+.tech-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}.tech-actions button{flex:1;min-width:130px}.tech-result{font-size:13px;line-height:1.5;color:#376e50;margin:14px 0 0}
+.tech-panel form fieldset{border:1px solid #e2ebe4;border-radius:14px;padding:15px;margin:14px 0}.tech-panel form legend{font-weight:750;padding:0 6px}
+.tech-panel .setting-line{display:flex;align-items:center;justify-content:space-between;gap:13px;margin:12px 0;font-size:13px}.tech-panel .setting-line label{flex:1;color:#536b5a}.tech-panel .setting-line input{width:40%;max-width:190px;min-height:42px;border:1px solid #d1dfd4;border-radius:10px;background:#fbfdfb;padding:9px 10px;color:#20442f}
+.tech-panel .primary-btn{margin-top:9px}.scenario-list{display:grid;gap:8px}.scenario-list label{display:flex;gap:12px;align-items:center;padding:12px;border-radius:12px;border:1px solid #e1ebe3;cursor:pointer}.scenario-list input{accent-color:#26794f;width:17px;height:17px}.scenario-list b,.scenario-list small{display:block}.scenario-list small{color:#7c8f80;margin-top:3px;font-size:12px}
+.tech-panel summary{cursor:pointer;font-weight:750}.linklike{display:block;text-align:center;text-decoration:none;margin-top:14px}
+@media(max-width:420px){.tech-panel{padding:16px}.tech-panel .setting-line{flex-direction:column;align-items:stretch}.tech-panel .setting-line input{width:100%;max-width:none}.tech-actions button{flex-basis:100%}}
+
+/* MVP 1.0.3: technical pages share the app navigation and centered headers */
+.page-heading{justify-content:center}.page-heading h1{text-align:center}
+.tech-panel{border-radius:17px}
+@media(max-width:700px){.tech-panel{margin-bottom:13px}.tech-panel h2{font-size:17px}.tech-actions button{min-height:47px}}
+
+/* Four engineering sections across the full bottom bar */
+.bottom-nav{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+/* 1.0.4: identical sticky header on technical pages. */
+.mobile-topbar-title{font-size:19px}
+@media(max-width:370px){.mobile-topbar-title{font-size:16px}}

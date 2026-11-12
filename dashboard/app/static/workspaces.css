@@ -1,0 +1,66 @@
+/* SaltGuard 1.0.5 — distinct workspaces, same design system. */
+.work-main{max-width:700px}.workspace-tag{display:inline-block;background:#e6f3ea;color:#1b7650;font-weight:850;letter-spacing:.065em;padding:8px 12px;border-radius:9px;font-size:11px;margin:4px 0 9px}.workspace-tag.lab-tag{background:#fff2d6;color:#956322}.workspace-desc{font-size:14px;line-height:1.6;color:#637d6c;margin:0 0 20px}.workspace-nav{grid-template-columns:repeat(3,1fr)}.workspace-link{display:flex;align-items:center;justify-content:space-between;gap:15px;min-height:52px;border-bottom:1px solid #e7eee9;text-decoration:none;color:#1d6547;font-weight:750;padding:13px 4px}.workspace-link:last-child{border-bottom:0}.workspace-details{margin-top:14px}.workspace-details summary{font-size:13px;cursor:pointer;color:#326247;font-weight:750}.tech-panel h2{line-height:1.35}a.navitem{text-decoration:none;color:#657b6e}.workspace-nav .navitem{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}.work-main{padding-bottom:calc(112px + env(safe-area-inset-bottom))}
+
+/* MVP 1.1.5: test presets, keep controls legible on one laptop */
+.sg-presets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}
+.sg-presets button{text-align:left;white-space:normal;display:flex;flex-direction:column;gap:5px;align-items:flex-start;justify-content:center;min-height:82px;line-height:1.4}
+.sg-presets button small{font-size:12px;opacity:.8;font-weight:400}
+@media(max-width:720px){.sg-presets{grid-template-columns:1fr}.sg-presets button{min-height:74px}}
+
+/* MVP 1.1.7: fixed order and typography / select sizing */
+.workspace-nav{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important}
+.workspace-nav .navitem{order:initial!important;min-width:0;font-weight:750;font-size:13px}
+.tech-panel,.tech-panel input,.tech-panel select,.tech-panel button{font-size:15px;font-weight:550}
+.tech-panel h2{font-size:19px;font-weight:800}
+.tech-panel .setting-line{font-size:15px;align-items:stretch}
+.tech-panel .setting-line label{font-size:14px;font-weight:650}
+.tech-panel .setting-line select,.tech-panel .setting-line input{display:block;box-sizing:border-box;flex:0 1 55%;width:55%;max-width:260px;min-width:0;min-height:46px;background:#fff;color:#1c4832;border:1px solid #b9d0c0;border-radius:11px;padding:10px 12px;font:inherit}
+.tech-panel .setting-line select{appearance:auto!important;overflow:hidden;text-overflow:ellipsis}
+.tech-panel form fieldset{min-width:0}
+@media(max-width:520px){.tech-panel .setting-line{display:flex;flex-direction:column;gap:7px}.tech-panel .setting-line select,.tech-panel .setting-line input{width:100%;max-width:none;flex:auto}.workspace-nav .navitem{font-size:12px}}
+
+/* MVP 1.1.8: accessible constrained custom crop menu, no oversized native popup */
+.sg-crop-picker{position:relative;width:100%;min-width:0}.sg-crop-picker .e-crop-pick{position:absolute!important;opacity:0!important;pointer-events:none!important;width:1px!important;height:1px!important;min-height:0!important;padding:0!important}.tech-panel .sg-crop-trigger{width:100%;min-height:46px;border:1px solid #b9d0c0;border-radius:11px;background:#fff;color:#204b34;text-align:left;padding:10px 13px;font-size:15px;font-weight:650}.sg-crop-menu{position:absolute;z-index:80;top:calc(100% + 4px);left:0;right:0;background:white;border:1px solid #b9d0c0;border-radius:11px;max-height:220px;overflow-y:auto;box-shadow:0 10px 22px #123b2d25}.sg-crop-menu[hidden]{display:none!important}.tech-panel .sg-crop-option{display:block;width:100%;border:0;border-bottom:1px solid #edf3ed;background:#fff;padding:10px 13px;text-align:left;font-size:15px;color:#204b34}.sg-crop-option:hover,.sg-crop-option:focus-visible{background:#eaf6ec}.tech-panel .setting-line:has(.sg-crop-picker){flex-direction:column;gap:7px}.tech-panel .setting-line:has(.sg-crop-picker) .sg-crop-picker{max-width:none}.tech-panel .setting-line[hidden]{display:none!important}
+
+.e-crop-reference{margin-top:10px;font-size:13px;line-height:1.5;color:#527461;font-weight:600}
+
+/* Phase 2.3: editable simulation inputs */
+.sg-custom-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}.sg-custom-grid label{display:flex;flex-direction:column;gap:7px;font-weight:600;font-size:13px;color:#244a3e}.sg-custom-grid input{box-sizing:border-box;width:100%;padding:12px;border-radius:10px;border:1px solid #a5bbaf;background:#fff;font-size:16px;color:#15362b}.sg-custom-grid input:focus{outline:2px solid #288b69;outline-offset:2px}@media(max-width:420px){.sg-custom-grid{gap:10px}}
+
+/* Phase 2.4 – unified preset + parameters */
+.sg-preset-picker{display:flex;flex-direction:column;gap:8px;margin:17px 0 7px}
+.sg-preset-picker label{font-weight:700;font-size:14px;color:#244a3e}
+.sg-preset-select{width:100%;padding:12px 14px;border:1px solid #aac6b9;border-radius:12px;background:white;color:#173e30;font:600 15px inherit;min-height:46px;font-size:15px}
+.sg-preset-select:focus-visible{outline:2px solid #258e69;outline-offset:2px}
+.sg-custom-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0 20px}
+.sg-parameter{padding:13px;border:1px solid #d6e5dc;border-radius:13px;background:#f8fbf9;min-width:0}
+.sg-param-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}
+.sg-param-head label{font-size:13px;font-weight:700;color:#244a3e;line-height:1.35}
+.sg-number-unit{display:flex;align-items:center;gap:4px;flex-shrink:0}
+.sg-number-unit input{width:74px;padding:7px 6px;border:1px solid #adc4b7;border-radius:8px;background:#fff;color:#15362b;font-size:15px;text-align:right;box-sizing:border-box}
+.sg-number-unit span{font-size:11px;color:#456c59;min-width:16px}
+.sg-parameter input[type=range]{width:100%;accent-color:#218969;cursor:pointer;margin:1px 0 3px}
+.sg-minmax{display:flex;justify-content:space-between;font-size:11px;color:#668375}
+.sg-test-tools{margin-top:18px;padding:15px;border-top:1px solid #d9e7df;background:#f5faf7;border-radius:12px}
+.sg-test-tools h3{margin:0 0 7px;font-size:15px;color:#244a3e}
+@media(max-width:650px){.sg-custom-grid{grid-template-columns:1fr}.sg-parameter{padding:11px 13px}}
+
+/* Phase 3.2: compact lab parameter cards; markup, inputs, handlers unchanged. */
+.sg-custom-panel .sg-custom-grid{gap:8px;margin:10px 0 14px}
+.sg-custom-panel .sg-parameter{padding:9px 11px;border-radius:10px}
+.sg-custom-panel .sg-param-head{margin-bottom:5px;gap:6px}
+.sg-custom-panel .sg-param-head label{font-size:12px;line-height:1.25}
+.sg-custom-panel .sg-number-unit input{width:67px;padding:5px 6px;min-height:30px;font-size:14px;border-radius:7px}
+.sg-custom-panel .sg-number-unit span{font-size:10px;min-width:13px}
+.sg-custom-panel .sg-parameter input[type=range]{margin:0 0 1px;padding:0;min-height:18px}
+.sg-custom-panel .sg-minmax{font-size:10px;line-height:1.1}
+@media(max-width:650px){.sg-custom-panel .sg-custom-grid{grid-template-columns:1fr;gap:7px}.sg-custom-panel .sg-parameter{padding:8px 10px}}
+
+/* Phase 3.8: TC07 recovery control appears only while interruption is active. */
+#sg-stale-recovery[hidden]{display:none!important}
+#sg-stale-recovery{margin-top:9px;padding:9px 10px}
+
+/* Standalone specialist navigation — four equal destinations. */
+.workspace-nav,.workspace-nav.workspace-nav{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.workspace-nav .navitem{font-size:12px;padding-inline:2px;white-space:nowrap}
+@media(max-width:400px){.workspace-nav .navitem{font-size:11px}.workspace-nav .navicon{font-size:20px}}

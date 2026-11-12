@@ -1,0 +1,124 @@
+/* Reports workspace — responsive, dense, accessible, independent of expert config. */
+.work-main:has(.activity-controls){max-width:1100px!important;padding-top:16px}
+.activity-head-meta{font-size:12px;font-weight:700;color:#41715a}
+.activity-controls,.activity-summary,.activity-trend-panel,.activity-journal{box-shadow:0 4px 18px rgba(19,60,35,.045);border:1px solid #dce9e0;border-radius:17px;background:#fff}
+.activity-panel-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.activity-panel-heading h2{margin:0}.activity-subheading,.activity-count{font-size:12px;color:#5e7a69;font-weight:650}
+.activity-controls .activity-filter{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:13px}
+.activity-filter label{display:grid;gap:6px;font-weight:650;font-size:12px;color:#54705f}
+.activity-filter select{width:100%;min-height:42px;border:1px solid #cfdfd3;border-radius:10px;padding:8px 12px;background:#fff;color:#204b37;font-size:14px}
+.activity-actions{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap}
+.activity-actions button{min-width:115px;width:auto!important;min-height:40px}.activity-export{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 16px;border:1px solid #a7d2bb;border-radius:10px;text-decoration:none;color:#126445;background:#edf7f1;font-weight:750;font-size:13px}
+#activity-message{min-height:0;font-size:12px;color:#678170;margin:9px 0 0}
+.activity-kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.activity-kpis>div{background:#f1f8f3;border:1px solid #e1efe5;border-radius:13px;padding:13px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.activity-kpis span{font-size:12px;color:#5b7665}.activity-kpis strong{font-size:23px;line-height:1.25;color:#19583d;font-weight:800;overflow-wrap:anywhere}
+.activity-trend-panel .activity-legend{display:none}
+#activity-charts{display:grid;grid-template-columns:1fr;gap:14px;margin-top:12px}
+.activity-chart{margin:0;border:1px solid #e2ede6;border-radius:13px;background:#fff;padding:14px;min-width:0}
+.activity-chart-head,.activity-axis{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.activity-chart-head b{font-size:14px;color:#224a34}.activity-chart-head span{font-size:16px;font-weight:800;color:#187550}
+.activity-chart svg{width:100%;height:150px;display:block;overflow:visible}
+.activity-axis{font-size:11px;color:#708978;padding:4px 2px 0}
+.activity-empty{padding:20px 10px;color:#6e8475;font-size:13px}
+.activity-scroll{overflow:auto;max-height:520px;border:1px solid #e0eae4;border-radius:12px}
+.activity-scroll table{border-collapse:collapse;width:100%;min-width:570px;font-size:13px;table-layout:fixed}
+.activity-scroll th,.activity-scroll td{text-align:left;border-bottom:1px solid #e8eee9;padding:11px 9px;vertical-align:middle;overflow-wrap:anywhere}
+.activity-scroll th{color:#4e6b57;background:#f2f8f4;font-size:12px;position:sticky;top:0;z-index:1}
+.activity-scroll th:first-child,.activity-scroll td:first-child{width:102px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.activity-scroll th:nth-child(2),.activity-scroll td:nth-child(2){width:68px}
+.activity-scroll th:nth-child(3),.activity-scroll td:nth-child(3){width:75px}
+.activity-scroll th:nth-child(4),.activity-scroll td:nth-child(4){width:88px;font-variant-numeric:tabular-nums}
+.activity-scroll td:last-child{font-weight:650}.activity-scroll small{display:block;color:#82948a;font-size:11px;font-weight:400;margin-top:3px}
+.activity-table .activity-tag{font-size:11px;padding:4px 8px;display:inline-block;border-radius:40px;background:#eaf5ef;color:#18734c;font-weight:750}
+.activity-table .activity-tag.incomplete{background:#fff4e6;color:#996421}
+.activity-time-date{display:block;color:#6c8574;font-size:11px;margin-top:2px}
+@media(min-width:720px){.activity-kpis{grid-template-columns:repeat(4,minmax(0,1fr))}#activity-charts{grid-template-columns:repeat(2,minmax(0,1fr))}.activity-chart:last-child{grid-column:1/-1}}
+@media(max-width:500px){.activity-scroll table{min-width:520px}.activity-scroll th,.activity-scroll td{padding:9px 7px}.activity-kpis strong{font-size:19px}.activity-chart svg{height:130px}.activity-controls .activity-filter{gap:8px}}
+
+/* Readable data charts: real measurement dots, labeled axes and threshold lines. */
+#activity-charts{grid-template-columns:minmax(0,1fr)!important;gap:13px}
+.activity-chart{padding:16px 18px}
+.activity-chart-head{align-items:flex-start}
+.activity-chart-head>div{display:flex;flex-direction:column;gap:3px}
+.activity-chart-head small{font-size:11px;color:#738478;font-weight:500}
+.activity-chart-head strong{font-size:22px;white-space:nowrap}
+.activity-chart-head strong span{font-size:12px}
+.activity-chart-overview{display:flex;gap:8px 18px;flex-wrap:wrap;margin:10px 0 8px;color:#607769;font-size:12px}
+.activity-chart-overview b{color:#204f37}
+.activity-chart-plot svg{height:auto!important;max-height:280px;min-height:150px;overflow:visible}
+.activity-grid-line{stroke:#e0eae3;stroke-width:1}
+.activity-tick{fill:#5c7465;font-size:12px;font-weight:500}
+.activity-axis-label{fill:#5e7866;font-size:11px;font-weight:650}
+.activity-data-point{cursor:crosshair;outline:none}
+.activity-data-point:hover,.activity-data-point:focus{fill-opacity:1;stroke:#133e2a;stroke-opacity:1;stroke-width:2}
+.activity-chart-references{display:flex;gap:8px 20px;flex-wrap:wrap;margin-top:3px;font-size:12px;color:#4e6658}
+.activity-chart-references span{display:inline-flex;align-items:center;gap:6px}
+.activity-chart-references i{width:20px;display:inline-block;border-top:2px dashed}
+.activity-chart-detail{margin-top:8px;min-height:18px;font-size:12px;color:#607666}
+@media(max-width:500px){.activity-chart{padding:12px 10px}.activity-chart-head strong{font-size:19px}.activity-chart-overview{font-size:11px;gap:5px 10px}.activity-chart-plot svg{min-height:150px}}
+
+/* Phase 4.2 — compact charts with no repetitive descriptions. */
+.activity-chart-overview{display:none!important}
+.activity-chart-detail:empty{display:none}
+.activity-chart-references{margin-top:0;font-size:11px}
+.activity-chart{padding:12px 14px}
+.activity-chart-plot svg{max-height:230px}
+
+/* Phase 4.5 — water estimates, no fake measurements or historical interpolation. */
+.activity-water{box-shadow:0 4px 18px rgba(19,60,35,.045);border:1px solid #dce9e0;border-radius:17px;background:#fff}
+.activity-water-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:13px}
+.activity-water-kpis>div{display:flex;flex-direction:column;gap:5px;padding:13px;background:#f1f8f3;border:1px solid #e1efe5;border-radius:12px;min-width:0}
+.activity-water-kpis span{font-size:12px;color:#5b7665}.activity-water-kpis strong{font-size:21px;color:#19583d;overflow-wrap:anywhere}
+.activity-water-note{font-size:11px;color:#738478;margin:12px 0 0}
+.water-bars{display:flex;align-items:stretch;gap:5px;overflow-x:auto;min-height:148px;max-height:230px;padding:12px 2px 0;margin-top:12px;border-bottom:1px solid #dce9e0}
+.water-bar-group{flex:1 0 19px;min-width:19px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px}
+.water-bar-stack{height:138px;width:min(100%,36px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border-radius:5px 5px 0 0}
+.water-bar-z1{background:#21936b;flex:none}.water-bar-z2{background:#5a91c7;flex:none}
+.water-bar-group>span{font-size:10px;white-space:nowrap;color:#688471}
+.water-legend{display:flex;gap:15px;margin-top:11px;font-size:12px;color:#5b7665}.water-legend span{display:inline-flex;gap:6px;align-items:center}
+.water-legend i{width:10px;height:10px;border-radius:3px}.legend-z1{background:#21936b}.legend-z2{background:#5a91c7}
+.activity-scroll table{min-width:690px}.activity-scroll th:nth-child(5),.activity-scroll td:nth-child(5){width:118px}
+@media(max-width:500px){.activity-water-kpis strong{font-size:17px}.activity-water-kpis>div{padding:9px}.activity-water-kpis span{font-size:11px}}
+
+/* Phase 4.5.2 — compact water chart with readable liters axis and hover/tap details. */
+.water-chart{position:relative;margin-top:14px;min-width:0}
+.water-axis-title{color:#607b69;font-size:11px;font-weight:700;margin:0 0 7px 2px}
+.water-chart-body{display:grid;grid-template-columns:38px minmax(0,1fr);gap:7px;min-width:0}
+.water-y-axis{height:158px;position:relative;font-size:10px;color:#668274;font-variant-numeric:tabular-nums}
+.water-y-axis>span{position:absolute;right:0;transform:translateY(50%);white-space:nowrap}
+.water-plot{min-width:0;position:relative;border-bottom:1px solid #cadfd1}
+.water-grid{position:absolute;inset:0 0 18px;pointer-events:none}
+.water-grid>span{position:absolute;left:0;right:0;border-top:1px dashed #e3ece5}
+.water-bars{position:relative;z-index:1;display:flex;align-items:stretch;gap:5px;overflow:visible;height:176px;min-height:0;max-height:none;padding:0;margin:0;border:none}
+.water-bar-group{flex:1 1 0;min-width:19px;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;gap:0}
+.water-bar-button{appearance:none;border:0;background:none;margin:0;padding:0;cursor:pointer;width:100%;height:158px;display:flex;justify-content:center;align-items:flex-end;position:relative;border-radius:4px 4px 0 0}
+.water-bar-button:focus-visible{outline:2px solid #167750;outline-offset:2px}
+.water-bar-stack{height:100%;width:min(100%,36px);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;border-radius:4px 4px 0 0}
+.water-bar-z1,.water-bar-z2{display:block;flex:none;width:100%;transition:filter .15s ease}
+.water-bar-button:hover .water-bar-stack,.water-bar-button[aria-expanded="true"] .water-bar-stack{filter:brightness(.91)}
+.water-date{height:18px;font-size:9px;text-align:center;white-space:nowrap;color:#708a78;line-height:18px;letter-spacing:-.1px}
+.water-tooltip{position:absolute;z-index:5;bottom:36px;transform:translateX(-50%);width:max-content;max-width:min(245px,calc(100% - 12px));padding:10px 12px;background:#163f2e;color:#fff;border-radius:10px;box-shadow:0 6px 22px rgba(12,48,30,.23);font-size:12px;line-height:1.6;pointer-events:none;text-align:left}
+.water-tooltip[hidden]{display:none}
+.water-tooltip strong{display:block;margin-bottom:4px;font-size:12px}
+.water-tooltip b{color:#fff}
+.water-tooltip-total{margin-top:4px;padding-top:5px;border-top:1px solid rgba(255,255,255,.25)}
+.water-tooltip-note{font-size:10px;color:#cbe2d3;margin-top:4px}
+@media(max-width:500px){.water-chart-body{grid-template-columns:32px minmax(0,1fr);gap:5px}.water-bars{gap:2px}.water-bar-stack{width:min(100%,26px)}.water-date{font-size:8px;letter-spacing:-.4px}.water-tooltip{bottom:30px}}
+
+/* Keep a 30-day view usable on narrow phones without overlapping date labels. */
+.water-bars{overflow-x:auto;overflow-y:hidden;scrollbar-width:thin}
+
+/* Phase 4.5.3 — refreshed compact water chart palette and legend. */
+.water-axis-title{margin-left:0;color:#4c7160;font-weight:700;letter-spacing:.01em}
+.water-legend{justify-content:center;align-items:center;gap:22px;margin-top:13px}
+.water-legend span{gap:7px;font-weight:600;color:#45695a}
+.water-legend i{width:10px;height:10px;border-radius:3px}
+.water-bar-z1,.legend-z1{background:#2fbf71}
+.water-bar-z2,.legend-z2{background:#4a90e2}
+.water-bar-button:hover .water-bar-stack,.water-bar-button[aria-expanded="true"] .water-bar-stack{filter:brightness(1.05) saturate(1.12)}
+.water-tooltip{background:#173f35;min-width:125px;padding:10px 12px;line-height:1.45}
+.water-tooltip-row,.water-tooltip-total{display:flex;align-items:center;justify-content:space-between;gap:18px;white-space:nowrap}
+.water-tooltip-row+.water-tooltip-row{margin-top:5px}
+.water-tooltip-total{margin-top:7px;padding-top:7px;border-top:1px solid rgba(255,255,255,.23);font-weight:700}
+.water-tooltip-total b,.water-tooltip-row b{font-variant-numeric:tabular-nums}

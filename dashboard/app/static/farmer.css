@@ -1,0 +1,447 @@
+:root{color-scheme:light;--green:#196b4a;--forest:#123b2d;--bg:#f5f8f5;--line:#e3ebe4;--muted:#718078;--shadow:0 4px 18px #153d2a07}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#1b3127;font-family:system-ui,-apple-system,'Segoe UI','Be Vietnam Pro',sans-serif;font-size:15px}a,button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.44;cursor:not-allowed}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #91c7a7;outline-offset:3px}.app-shell{min-height:100vh}.app-header{background:white;position:sticky;top:0;z-index:12;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px max(22px,calc((100% - 960px)/2));min-height:75px}.brand{display:flex;align-items:center;gap:10px;font-size:22px;line-height:1;font-weight:850;color:var(--forest);letter-spacing:-.8px;text-decoration:none}.brand-icon{background:#e4f3e8;color:var(--green);width:41px;height:41px;display:grid;place-items:center;border-radius:13px;font-size:24px}.brand small{display:block;font-size:9px;letter-spacing:2px;color:#658879;margin-top:5px;font-weight:800}.header-actions{display:flex;align-items:center;gap:12px}.connection-pill{font-size:12px;color:#4b805c;background:#e9f4ec;border-radius:999px;padding:9px 13px;font-weight:650;white-space:nowrap}.connection-pill.bad{color:#a16b28;background:#fff2df}.tech-link{display:grid;place-items:center;border:1px solid var(--line);width:39px;height:39px;border-radius:12px;text-decoration:none;color:#5f7866;font-size:21px}.main{max-width:960px;margin:0 auto;padding:25px 22px 130px}.page-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:20px}.page-heading h1{font-size:29px;letter-spacing:-1px;margin:0}.tiny-note,.muted-small{font-size:12px;color:var(--muted)}.page{display:none}.page.active{display:block}.status-card{background:linear-gradient(113deg,#155d41,#278562);border-radius:20px;padding:26px 28px;color:white;display:flex;align-items:center;gap:19px;min-height:150px}.status-card.offline{background:linear-gradient(113deg,#536e62,#728e7d)}.status-card.warn{background:linear-gradient(113deg,#92682e,#b48b49)}.status-symbol{flex:none;display:grid;place-items:center;font-size:32px;width:57px;height:57px;border-radius:18px;background:#ffffff24}.status-card h2{font-size:23px;line-height:1.3;margin:0 0 8px;letter-spacing:-.5px}.status-card p{color:#e2f2e8;line-height:1.6;font-size:14px;margin:0}.section-row{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:27px 0 14px}.section-row h2,.primary-control h2{font-size:19px;letter-spacing:-.4px;margin:0}.link-btn{background:none;border:0;color:var(--green);font-weight:700;font-size:13px;padding:8px}.source-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}.source-box{background:white;border:1px solid var(--line);border-radius:16px;display:flex;gap:13px;padding:19px 17px;align-items:center;box-shadow:var(--shadow)}.source-icon{font-size:25px;color:#258c78;background:#edf7f3;display:grid;place-items:center;width:46px;height:46px;flex:none;border-radius:12px}.source-box small,.source-sub{display:block;color:var(--muted);font-size:12px}.source-box strong{display:block;font-size:16px;margin:5px 0;line-height:1.35}.source-sub{font-size:12px}.zone-brief-list{background:white;border:1px solid var(--line);border-radius:17px;overflow:hidden}.zone-brief{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 19px;border-bottom:1px solid var(--line)}.zone-brief:last-child{border-bottom:0}.zone-brief strong{font-size:16px}.zone-brief small{font-size:12px;display:block;color:var(--muted);margin-top:5px}.zone-status{white-space:nowrap;font-size:13px;font-weight:700;color:#267a52}.zone-status.muted{color:#829087}.primary-control{margin-top:22px;display:flex;justify-content:space-between;gap:12px;align-items:center;border:1px solid var(--line);border-radius:17px;background:white;padding:21px 20px;box-shadow:var(--shadow)}.primary-control p{color:var(--muted);margin:7px 0 0;font-size:13px;line-height:1.4}.switch{flex:none;width:62px;height:35px;border:0;border-radius:25px;background:#cdd5cf;display:flex;align-items:center;padding:4px;transition:background .15s}.switch span{background:white;width:27px;height:27px;border-radius:50%;display:block;box-shadow:0 2px 6px #23412318;transition:transform .15s}.switch[aria-checked=true]{background:#25835b}.switch[aria-checked=true] span{transform:translateX(27px)}.page-intro{font-size:14px;line-height:1.7;color:#607568;margin:0 0 17px}.zone-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.zone-card{background:white;border:1px solid var(--line);border-radius:17px;padding:22px}.zone-card h3{margin:0;font-size:18px}.zone-card p{font-size:13px;color:var(--muted);margin:8px 0}.zone-card-head{display:flex;justify-content:space-between;gap:8px;align-items:start}.chip{border-radius:999px;padding:6px 9px;background:#edf2ee;font-size:11px;color:#718478;font-weight:750;white-space:nowrap}.chip.active{background:#e0f4e8;color:#217750}.moisture-row{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-size:13px;color:#5b7663}.moisture-row b{font-size:20px;color:#244f36}.bar{height:8px;background:#edf2ef;border-radius:30px;overflow:hidden;margin-top:10px}.bar span{height:100%;background:#4ea978;display:block}.soil-detail{margin-top:19px;border-top:1px solid var(--line);padding-top:14px}.soil-detail summary{cursor:pointer;color:var(--green);font-weight:700;font-size:13px}.quality-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:14px}.quality-item{background:#f5f8f5;border-radius:9px;padding:8px;text-align:center}.quality-item small{display:block;font-size:11px;color:var(--muted)}.quality-item b{display:block;font-size:12px;margin-top:6px;overflow-wrap:anywhere}.warning-small{color:#a37031;font-size:12px;line-height:1.5}.outline-btn,.primary-btn{border-radius:12px;padding:12px 16px;min-height:46px;font-weight:750;font-size:14px}.outline-btn{border:1px solid #d3e4d7;background:white;color:var(--green)}.primary-btn{border:1px solid var(--green);background:var(--green);color:white}.zone-card .outline-btn{width:100%;margin-top:15px}.settings-details,.schedule-create{margin-top:15px;background:white;border:1px solid var(--line);border-radius:16px;padding:18px 20px}.settings-details summary,.schedule-create summary{cursor:pointer;font-size:15px;font-weight:750;color:#275b40}.settings-inner{margin-top:19px;border-top:1px solid var(--line);padding-top:17px}.settings-inner p{font-size:13px;color:var(--muted);line-height:1.6}.setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 20px;font-weight:700}.two-actions{display:flex;gap:9px;flex-wrap:wrap}.schedule-list{display:grid;gap:12px}.schedule-card{border:1px solid var(--line);background:white;padding:19px;border-radius:16px;display:flex;gap:14px;justify-content:space-between;align-items:center}.schedule-main strong{font-size:20px;letter-spacing:-.4px}.schedule-main small{color:var(--muted);display:block;font-size:12px;line-height:1.7;margin-top:4px}.schedule-actions{display:flex;align-items:center;gap:10px}.icon-btn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 12px;color:#a65a53;font-size:16px}.schedule-form{border-top:1px solid var(--line);padding-top:17px;margin-top:16px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.form-grid label{font-size:13px;font-weight:650;color:#526a5b;display:block}.form-grid input,.form-grid select{display:block;min-width:0;width:100%;background:#fbfdfb;border:1px solid #cfdfd2;border-radius:10px;padding:11px 10px;margin-top:6px;min-height:44px;color:#1d4430}.schedule-form>.primary-btn{width:100%;margin-top:18px}.quiet-note{color:var(--muted);font-size:12px;line-height:1.7;margin-top:17px}.alert-list{display:grid;gap:12px}.alert-item{background:white;border:1px solid var(--line);border-radius:14px;padding:17px;display:flex;gap:12px;align-items:start}.alert-icon{flex:none;display:grid;place-items:center;width:33px;height:33px;border-radius:9px;color:#8a723e;background:#fff3df;font-weight:850}.alert-item.critical .alert-icon{color:#bb5148;background:#ffeded}.alert-item h3{margin:1px 0 8px;font-size:16px}.alert-item p{margin:0;line-height:1.6;font-size:13px;color:var(--muted)}.empty{background:#fff;border:1px dashed #ccd9cf;border-radius:14px;padding:24px;color:var(--muted);line-height:1.6}.journal-list{background:#fff;border:1px solid var(--line);border-radius:15px;padding:4px 20px}.journal-item{border-bottom:1px solid var(--line);padding:14px 0}.journal-item:last-child{border:0}.journal-item b{font-size:14px}.journal-item small{display:block;margin-top:6px;color:var(--muted);font-size:12px;line-height:1.5}.footer{color:#8ba092;font-size:11px;line-height:1.6;margin:45px 0 0;text-align:center}.footer a{color:inherit}.bottom-nav{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:grid;grid-template-columns:repeat(5,1fr);width:min(690px,calc(100% - 32px));background:white;border:1px solid #dbe7dd;border-radius:21px;box-shadow:0 12px 38px #173f2e1a;padding:7px;z-index:30}.navitem{position:relative;border:0;background:transparent;border-radius:14px;padding:10px 3px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;color:#78877d;font-size:12px;font-weight:650;white-space:nowrap}.navicon{font-size:23px;line-height:1}.navitem.selected{background:#eaf5ed;color:#146d47}.counter{position:absolute;top:1px;right:13%;background:#d98350;color:white;border-radius:20px;padding:1px 5px;font-size:9px}.toast{position:fixed;bottom:110px;left:50%;transform:translate(-50%,8px);opacity:0;pointer-events:none;background:#1e5940;color:white;padding:13px 18px;border-radius:13px;box-shadow:0 12px 35px #10402a36;max-width:min(440px,calc(100% - 36px));width:max-content;line-height:1.5;text-align:center;z-index:40;transition:opacity .2s,transform .2s;font-size:13px}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:700px){.app-header{padding:12px 17px;min-height:65px}.brand{font-size:19px}.brand-icon{height:36px;width:36px}.brand small{font-size:8px}.connection-pill{font-size:11px;padding:7px 9px}.tech-link{width:34px;height:34px}.main{padding:23px 15px 130px}.page-heading h1{font-size:25px}.status-card{padding:23px 18px;min-height:138px;gap:12px}.status-symbol{width:43px;height:43px;font-size:25px}.status-card h2{font-size:19px}.source-pair{gap:10px}.source-box{padding:14px 12px;gap:9px}.source-icon{width:37px;height:37px;font-size:21px}.source-box strong{font-size:14px}.source-box small,.source-sub{font-size:11px}.zone-grid{grid-template-columns:1fr}.bottom-nav{bottom:0;left:0;transform:none;width:100%;border-radius:18px 18px 0 0;box-shadow:0 -3px 21px #1c422b12;padding:8px 5px calc(9px + env(safe-area-inset-bottom));border-bottom:0}.navitem{font-size:11px;padding:7px 0;gap:4px}.navicon{font-size:21px}.toast{bottom:96px}.form-grid{gap:11px}}
+@media(max-width:370px){.navitem{font-size:10px}.source-box{flex-direction:column;align-items:start}.status-card h2{font-size:18px}.schedule-card{flex-direction:column;align-items:start}.schedule-actions{align-self:stretch;justify-content:space-between}.page-heading h1{font-size:23px}}
+
+[hidden]{display:none !important}
+
+/* SaltGuard 2.5.3: farmer-first two-mode irrigation controls */
+.mode-field{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:19px;color:#526a5b;font-size:14px;font-weight:650}
+.mode-field select{min-height:44px;background:#f5faf6;border:1px solid #d4e3d7;border-radius:12px;color:#1d603c;padding:9px;max-width:60%;font-weight:700}
+.mode-pending{color:#956a36;margin-top:8px;display:block}
+.moisture-warning{font-size:13px;font-weight:700;color:#8c621f;background:#fff4df;border-radius:10px;padding:10px;margin-top:12px}
+.water-dialog{border:1px solid #e0eae1;border-radius:22px;box-shadow:0 16px 70px #122f2355;max-width:min(430px,calc(100vw - 30px));width:100%;padding:25px;color:#233a2e}
+.water-dialog::backdrop{background:#0d291b90}
+.water-dialog h2{font-size:22px;margin:0 0 20px}
+.water-form label{font-size:14px;font-weight:700;display:block}
+.water-form input{width:100%;margin-top:9px;min-height:50px;padding:12px;border:1px solid #ccdfd0;border-radius:12px;font-size:17px}
+.modal-note{font-size:13px;line-height:1.5;color:#627467;margin:14px 0 20px}
+.dialog-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+/* SaltGuard MVP: four bottom tabs and local-only physical master permission. */
+.bottom-nav{grid-template-columns:repeat(4,minmax(0,1fr))}
+.master-status{border-radius:99px;background:#e7ebe7;color:#6c7b70;padding:9px 14px;font-weight:750;white-space:nowrap}
+.master-status.on{background:#e1f3e7;color:#176c43}
+.zone-hold-row{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:20px;padding:16px 0;border-top:1px solid var(--line)}
+.zone-hold-row strong{display:block;font-size:14px}.zone-hold-row small{display:block;color:var(--muted);font-size:12px;margin-top:5px}
+.zone-card .zone-hold{width:62px;margin:0;min-height:35px}
+@media(max-width:700px){.navitem{font-size:12px}.main{padding-bottom:124px}.status-card{min-height:120px}}
+
+/* SaltGuard MVP 1.0.1: a single modal for direct farmer actions. */
+.status-card[hidden]{display:none!important}
+.action-dialog{width:min(410px,calc(100vw - 32px));max-height:calc(100dvh - 50px);overflow:auto;padding:27px 25px 23px;border:1px solid #d9e6dd;border-radius:22px;background:#fff;color:#203e2c;box-shadow:0 20px 80px #08291e44;text-align:center}
+.action-dialog::backdrop{background:#10291e82;backdrop-filter:blur(2px)}
+.action-dialog h2{font-size:22px;line-height:1.3;margin:13px 0 8px}
+.action-dialog p{color:#65776b;line-height:1.6;font-size:14px;margin:0 0 24px}
+.action-dialog-buttons{display:flex;gap:10px}
+.action-dialog-buttons button{flex:1;min-width:0;min-height:48px}
+.action-dialog-buttons button[hidden]{display:none}
+.dialog-glyph{width:54px;height:54px;display:grid;place-items:center;border-radius:17px;margin:0 auto;color:#316d50;background:#e9f5ee;font-weight:800;font-size:27px}
+.dialog-glyph.error{color:#a25b34;background:#fff1e6}
+.dialog-glyph.success{color:#17784d;background:#e5f5eb}
+.action-dialog button:focus-visible{outline:3px solid #91c7a7;outline-offset:3px}
+@media(max-width:700px){.action-dialog{padding:25px 21px 22px;border-radius:20px}.action-dialog h2{font-size:20px}}
+
+.primary-control[hidden]{display:none!important}
+/* SaltGuard MVP 1.0.2: cleaner farmer app and settings */
+.back-link{border:0;background:transparent;color:#27724d;font-size:14px;font-weight:750;padding:4px 0 14px}
+.settings-card{margin:0 0 14px;padding:21px 20px}
+.settings-card h2,.reserve-panel h2{font-size:17px;font-weight:750;color:#204e37;margin:0}
+.settings-card .form-grid{margin-top:17px}
+.settings-card .form-grid .primary-btn{grid-column:1/-1}
+.compact-row{margin:0;padding:14px 0;border-bottom:1px solid #ecf2ed;font-size:13px}
+.compact-row:last-child{border-bottom:0;padding-bottom:0}
+.compact-row:first-of-type{padding-top:18px}
+.compact-row strong{color:#286745}
+.settings-tile{border:1px solid var(--line);background:#fff;border-radius:16px;padding:17px 18px;text-decoration:none;color:var(--forest);display:flex;align-items:center;gap:14px;min-height:75px}
+.settings-tile>span:nth-child(2){flex:1;min-width:0}.settings-tile strong{display:block;font-size:15px}.settings-tile small{display:block;font-size:12px;color:#77877d;margin-top:5px;line-height:1.4}.settings-tile-symbol{width:40px;height:40px;display:grid;place-items:center;background:#eaf6ee;color:#28764f;border-radius:12px;font-size:19px}
+.reserve-panel{margin-top:16px}.reserve-panel .settings-inner{margin-top:13px;border:0;padding-top:0}.reserve-panel .setting-row{margin:0 0 10px}.reserve-panel .outline-btn{margin-top:8px}
+.journal-detail{display:block;font-size:12px;color:#607869;margin-top:5px;line-height:1.5}
+.journal-item{padding:17px 0}.journal-item small{font-size:11px}
+/* Four everyday tabs stay visible; settings is an explicit secondary screen. */
+@media(max-width:700px){.main{padding-top:21px}.section-row{margin-top:24px}.settings-card{padding:18px 16px}.reserve-panel{padding:18px 16px}.page-heading{margin-bottom:19px}.page-heading h1{font-size:24px}}
+
+/* MVP 1.0.3 - phone-first layout, no website header */
+.app-header{display:none!important}
+.main{max-width:720px;padding-top:24px}
+.page-heading{justify-content:center;text-align:center;margin-bottom:10px}
+.page-heading h1{font-size:26px;font-weight:800;letter-spacing:-.75px}
+.device-line{display:flex;gap:9px;justify-content:center;align-items:center;color:#687e71;font-size:12px;margin-bottom:20px}
+.device-line .connection-pill{font-size:12px;padding:6px 12px}
+.activity-panel{display:flex;align-items:center;gap:15px;background:#166748;color:white;border-radius:19px;padding:22px;margin-bottom:9px;box-shadow:0 9px 23px #104a3015}
+.activity-panel.offline{background:#637a70}
+.activity-symbol{width:44px;height:44px;display:grid;place-items:center;background:#ffffff21;border-radius:14px;font-size:26px;flex:none}
+.activity-panel strong{display:block;font-size:18px;line-height:1.3}.activity-panel small{display:block;margin-top:7px;font-size:13px;color:#e5f3e9;line-height:1.5}
+.bottom-nav{grid-template-columns:repeat(5,minmax(0,1fr))}
+.navitem{white-space:normal;text-align:center;min-width:0;font-weight:700}
+.navitem span:last-child{line-height:1.2}
+.zone-card .urgent-control{margin-top:16px;padding:14px;background:#fff8e9;border:1px solid #f3e3c2;border-radius:13px}
+.urgent-control span{display:block;font-weight:750;color:#906323;font-size:13px}
+.zone-card .urgent-control .outline-btn{background:#fff;color:#80521e;border-color:#ead19f;margin-top:10px}
+.allow-once-alert{margin-top:12px!important;min-width:185px;background:#fffaf0;color:#80521e;border-color:#eccf9d;font-size:13px}
+@media(max-width:700px){.main{padding:20px 14px calc(118px + env(safe-area-inset-bottom))}.page-heading h1{font-size:25px}.navitem{font-size:10.5px;gap:4px}.navicon{font-size:20px}.activity-panel{padding:18px 16px}.activity-panel strong{font-size:17px}}
+@media(max-width:370px){.navitem{font-size:10px}.activity-panel strong{font-size:16px}}
+
+/* SaltGuard MVP 1.0.4 — compact sticky native-app top bar.
+   Farmer and technician screens share exactly the same visual header. */
+.mobile-topbar{
+  position:sticky;top:0;z-index:35;
+  background:#e9f3ec;
+  border-bottom:1px solid #d4e5d8;
+  min-height:56px;
+  -webkit-backdrop-filter:blur(14px);
+  backdrop-filter:blur(14px);
+  transition:box-shadow .18s ease;
+}
+.mobile-topbar.is-scrolled{box-shadow:0 5px 17px rgba(18,63,40,.12)}
+.mobile-topbar-inner{
+  max-width:752px;margin:0 auto;min-height:56px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;padding:0 20px;
+}
+.mobile-topbar-title{
+  min-width:0;flex:1;margin:0;
+  font-size:20px;line-height:1.15;font-weight:800;
+  color:#174332;letter-spacing:-.55px;
+  text-align:left;
+}
+.mobile-topbar .connection-pill{
+  flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  background:#d9efdf;color:#216945;
+  border:1px solid #c8e1d0;
+  border-radius:999px;padding:7px 11px;
+  min-height:30px;font-size:12px;line-height:1.1;font-weight:750;
+}
+.mobile-topbar .connection-pill::before{
+  content:"";width:7px;height:7px;border-radius:50%;
+  background:#32a46b;flex:none;box-shadow:0 0 0 3px rgba(42,158,91,.12);
+}
+.mobile-topbar .connection-pill.bad{background:#fff3e2;color:#8a5b20;border-color:#f0dfc3}
+.mobile-topbar .connection-pill.bad::before{background:#e4a044;box-shadow:0 0 0 3px rgba(220,151,58,.12)}
+/* The title is now part of the sticky bar, never repeated in the main body. */
+.main{padding-top:17px}
+@media(max-width:700px){
+  .mobile-topbar{min-height:54px}
+  .mobile-topbar-inner{min-height:54px;padding:0 16px;gap:10px}
+  .mobile-topbar-title{font-size:19px}
+  .mobile-topbar .connection-pill{font-size:11px;padding:6px 10px}
+  .main{padding-top:16px}
+}
+@media(max-width:370px){
+  .mobile-topbar-title{font-size:17px;letter-spacing:-.4px}
+  .mobile-topbar-inner{padding:0 12px;gap:7px}
+  .mobile-topbar .connection-pill{font-size:10.5px;padding:6px 8px}
+}
+
+/* MVP 1.0.5: farmer essentials, action instead of a vague waiting status. */
+.home-priority[hidden]{display:none!important}
+.home-priority{background:#fff7e9;border:1px solid #f3dfb8;padding:17px 18px;border-radius:17px;margin:16px 0 10px;color:#694b20}
+.home-priority-head{display:flex;align-items:center;gap:10px;font-size:15px}
+.home-priority-head span{display:grid;place-items:center;flex:none;width:25px;height:25px;border-radius:50%;background:#f8e6bc;color:#79551e;font-weight:900}
+.home-priority p{font-size:13px;line-height:1.5;margin:8px 0 10px}.home-priority small{display:block;font-size:12px;line-height:1.5;color:#79674b}
+.home-priority button{width:100%;border-color:#c89f65;color:#6b4b1c;background:#fff;min-height:45px}
+.admin-entry{background:#fff;border:1px solid var(--line);border-radius:17px;padding:17px;margin-top:15px}.admin-entry summary{cursor:pointer;font-weight:750;color:#285b41;font-size:15px}.admin-entry-body{display:grid;gap:10px;margin-top:16px}.admin-entry-body .settings-tile{box-shadow:none}.meta-help{font-size:12px;line-height:1.5;color:#687c70;margin:7px 0 0}.settings-details .setting-row strong{white-space:normal;text-align:right}
+/* Ensure touch targets and maintain bottom bar safe area. */
+.bottom-nav{padding-bottom:max(8px,env(safe-area-inset-bottom))}.navitem{min-height:48px}
+
+.activity-panel[hidden]{display:none!important}
+
+.home-recent[hidden]{display:none!important}.home-recent{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:4px 12px;margin-top:12px;padding:13px 15px;border:1px solid #e1eae3;border-radius:13px;background:#fff}.home-recent span{font-size:12px;color:#6a7f71;flex-basis:100%}.home-recent strong{font-size:13px;color:#315d47}.home-recent small{font-size:11px;color:#708376}
+
+/* MVP 1.0.6: 16px title on all screen sizes. */
+.mobile-topbar-title{font-size:16px!important;letter-spacing:-.25px!important}
+.notice-section{margin-top:20px;margin-bottom:12px}
+.notice-section:first-child{margin-top:2px}
+.notice-caption{font-size:12px;color:#658070}
+.alert-item.archived{opacity:.88;background:#fff}
+.notice-meta{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 0;color:#7b8d80;font-size:11px}
+.notice-status{display:inline-block;color:#27724d;font-weight:750;font-size:11px}
+.notice-status.old{color:#7a817b}
+.notice-more{margin:13px auto 3px;width:100%}
+.lock-glyph{font-size:14px}
+
+.home-time{display:flex;align-items:center;gap:11px;padding:13px 15px;background:#fff;border:1px solid #e1eae3;border-radius:13px;margin:12px 0 8px}
+.home-time-symbol{font-size:24px;color:#2c8560;line-height:1}
+.home-time strong{display:block;font-size:13px;color:#315d47}
+.home-time small{display:block;color:#6a7f71;font-size:12px;margin-top:3px}
+
+/* SaltGuard MVP 1.1 – phone-first farmer app, shared by the technician workspaces. */
+:root{--bg:#f4f8f5;--line:#e0eae3;--green:#176747;--forest:#183e30}
+.mobile-topbar{background:#e9f4ec;border-color:#d9e8dd}
+.mobile-topbar-inner{max-width:752px}
+.main{max-width:752px}
+.activity-panel{background:linear-gradient(115deg,#155d43,#208360);box-shadow:0 10px 24px rgba(13,83,54,.11)}
+.activity-panel strong{font-size:17px;line-height:1.3}
+.activity-panel small{font-size:12.5px;line-height:1.45}
+.activity-symbol{width:41px;height:41px}
+.section-row h2{font-size:17px;font-weight:780;letter-spacing:-.35px}
+.zone-brief strong{font-size:15px}
+.zone-brief{padding:16px 17px}
+.zone-brief small{font-size:12px}
+.source-box{padding:15px 13px;gap:9px;box-shadow:none}
+.source-icon{height:34px;width:34px;font-size:21px}
+.source-box strong{font-size:14px;overflow-wrap:anywhere}
+.source-box small,.source-sub{font-size:11px}
+.water-overview{display:flex;align-items:center;gap:14px;background:#ebf5ef;border:1px solid #d1e8da;border-radius:17px;padding:16px;margin-top:13px}
+.water-overview-icon{flex:none;width:40px;height:40px;border-radius:13px;display:grid;place-items:center;font-size:24px;background:#d7eddf;color:#1e815b}
+.water-overview>div:last-child{min-width:0}
+.water-overview small{display:block;color:#4d7662;font-size:10px;letter-spacing:.09em;font-weight:800;margin-bottom:5px}
+.water-overview strong{font-size:16px;color:#165b3f;display:block;line-height:1.3}
+.water-overview p{font-size:12px;line-height:1.5;margin:5px 0 0;color:#567666}
+.water-overview.danger{background:#fff2e8;border-color:#f3d3c2}
+.water-overview.danger .water-overview-icon{background:#fce3d3;color:#b55235}
+.water-overview.danger small,.water-overview.danger strong{color:#97452c}
+.water-overview.danger p{color:#895e4d}
+.water-overview.unavailable{background:#f0f3f1;border-color:#dde5de}
+.water-overview.unavailable .water-overview-icon{background:#e4eae6;color:#77867c}
+.water-overview.unavailable strong{color:#5d7265}
+.zone-page-sub{color:#64786b;font-size:12.5px;margin:5px 0 15px;line-height:1.45}
+.settings-card,.zone-card{box-shadow:none}
+.farm-name-form{display:grid;gap:12px;margin-top:13px}.farm-name-form label{display:grid;gap:6px;font-size:12px;color:#698074;font-weight:650}.farm-name-form input{min-height:43px;border:1px solid #dce8df;background:#fafdfe;border-radius:11px;padding:10px 12px;color:#163f2c;font-size:14px}.farm-name-form button{min-height:42px;justify-self:start}
+.help-entry{border-top:1px solid #edf1ed;padding:13px 0}.help-entry summary{font-size:13px;font-weight:700;color:#275e43;cursor:pointer}.help-body{padding:6px 0}.help-body p{font-size:12px;color:#5a7364;line-height:1.6;margin:10px 0}
+.journal-filter,.trend-period{display:flex;gap:6px;flex-wrap:wrap;background:#ebf2ec;border-radius:12px;padding:4px}
+.journal-filter button,.trend-period button{flex:1;min-width:65px;min-height:35px;border:0;border-radius:9px;background:transparent;color:#678075;font-size:12px;font-weight:700;padding:8px 7px}
+.journal-filter button.selected,.trend-period button.selected{background:white;box-shadow:0 2px 7px #143c2110;color:#176747}
+.journal-item[hidden],#journal-empty-filter[hidden]{display:none!important}
+.journal-list{margin-top:13px}
+.trend-card{padding:16px;background:white;border:1px solid #e0eae3;border-radius:17px}
+.trend-header{display:flex;align-items:center;justify-content:space-between;margin:16px 0 6px;gap:8px}
+.trend-header strong{font-size:13px;color:#284f3a}.trend-header span{font-size:11px;color:#75887d}
+.trend-plot{height:125px;width:100%;border-radius:11px;background:#fcfefc;display:flex;align-items:center;justify-content:center;color:#728779}
+.trend-plot svg{width:100%;height:100%}.trend-empty{font-size:12px}
+.trend-legend{display:flex;gap:15px;margin:8px 0 12px;font-size:11px;color:#587561}
+.trend-legend span::before{content:"";display:inline-block;width:15px;height:3px;vertical-align:middle;margin-right:6px;border-radius:2px;background:#219568}
+.trend-legend .legend-two::before{background:#4781ad}
+.trend-note{display:block;color:#73847a;line-height:1.5;font-size:11px}
+.alert-item.critical{border-color:#f3d4ca;background:#fffaf8}
+.alert-item.warning{border-color:#e9dfc8}
+@media(max-width:430px){
+  .main{padding-inline:12px}
+  .activity-panel{padding:16px 14px}
+  .source-pair{gap:8px}
+  .source-box{padding:13px 10px}
+  .source-icon{width:29px;height:32px;font-size:17px}
+  .water-overview{padding:14px 13px}
+}
+
+/* SaltGuard MVP 1.1.1 – intuitive liquid widgets & account-first settings */
+.liquid-widgets{align-items:stretch;gap:11px}
+.liquid-card{display:flex;position:relative;justify-content:space-between;min-height:156px;gap:10px;padding:16px 12px 14px;overflow:hidden}
+.liquid-info{min-width:0;display:flex;flex:1;flex-direction:column;align-items:flex-start;gap:5px;z-index:1}
+.liquid-info small{color:#718474;font-weight:750;font-size:11px;letter-spacing:.01em}
+.liquid-info strong{font-size:14px;line-height:1.35;min-height:18px}
+.liquid-info .source-sub{font-size:12px;line-height:1.45;color:#637a6b}
+.liquid-caption{display:inline-flex;font-size:10.5px;font-weight:750;line-height:1.2;padding:5px 8px;border-radius:99px;background:#eef4ef;color:#547661;margin-top:auto}
+.liquid-glass{position:relative;width:39px;height:104px;border:2px solid #c5dcd1;border-top:3px solid #aecbbd;border-radius:13px 13px 18px 18px;background:#f7faf8;overflow:hidden;flex:none;align-self:center;box-shadow:inset 0 0 0 4px #ffffff7a}
+.liquid-glass::after{content:'';position:absolute;top:4px;left:6px;width:5px;bottom:9px;border-radius:9px;background:#ffffff8f;z-index:3}
+.liquid-fill{position:absolute;bottom:0;left:0;right:0;height:0%;border-radius:6px 6px 0 0;background:var(--water,#e7c653);transition:height .7s ease,background .2s}
+.liquid-wave{position:absolute;bottom:0;left:0;right:0;height:5px;background:#ffffff2c}
+.liquid-card[data-level="safe"]{--water:#efc84a}.liquid-card[data-level="safe"] .liquid-caption{background:#fff5d1;color:#88671a}
+#reserve-card[data-level="safe"]{--water:#4db9ac}#reserve-card[data-level="safe"] .liquid-caption{background:#e3f8f1;color:#227c68}
+.liquid-card[data-level="warning"]{--water:#f39b48}.liquid-card[data-level="warning"] .liquid-caption{background:#fff0dc;color:#aa6522}
+.liquid-card[data-level="danger"]{--water:#d85b55}.liquid-card[data-level="danger"] .liquid-caption{background:#ffebe8;color:#aa3c39}
+.liquid-card[data-level="unknown"]{--water:#d8e1da}.liquid-card[data-level="unknown"] .liquid-caption{background:#edf0ed;color:#778579}
+.water-overview.caution{background:#fff9f0;border-color:#f0dbbd}
+.settings-subview[hidden],#settings-root[hidden],.settings-subpanel[hidden]{display:none!important}
+.account-card{display:flex;align-items:center;gap:13px;padding:19px 16px;background:linear-gradient(135deg,#eaf5ee,#ffffff);border:1px solid #dbe9e0;border-radius:20px;margin:4px 0 23px}
+.account-avatar{width:52px;height:52px;display:grid;place-items:center;background:#d3e9d9;border-radius:17px;font-size:23px;flex:none}
+.account-summary{min-width:0;flex:1;display:grid;gap:4px}.account-summary small{font-size:10px;color:#72917d;font-weight:850;letter-spacing:.07em}.account-summary strong{font-size:16px;color:#17452c}.account-summary span{font-size:12px;color:#729080}
+.account-open{border:0;background:white;border-radius:13px;height:40px;width:34px;color:#396f4f;font-size:28px;cursor:pointer}
+.settings-group-heading{font-weight:800;font-size:13px;color:#789181;margin:22px 3px 9px}
+.settings-menu{border:1px solid #e0e9e2;background:white;border-radius:18px;overflow:hidden;display:block;text-decoration:none;color:inherit}
+.settings-menu-item{display:flex;align-items:center;gap:12px;min-height:61px;padding:10px 15px;border:0;border-bottom:1px solid #edf2ee;background:white;width:100%;text-align:left;color:#294b35;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none}
+.settings-menu-item:last-child{border-bottom:0}
+.settings-menu-item:active,.settings-menu-item:focus-visible,.account-open:focus-visible{background:#f2faf5}
+.menu-symbol{display:grid;place-items:center;background:#edf6f0;color:#3f8d66;border-radius:11px;flex:none;width:34px;height:34px;font-size:19px;font-weight:700}
+.menu-arrow{margin-left:auto;color:#849d8d;font-size:24px;font-weight:400}
+.settings-menu-item.toggle-line{cursor:default}.toggle-line .switch{margin-left:auto;flex:none}
+.settings-menu.expert-entry{display:flex;align-items:center;gap:12px;min-height:65px;padding:10px 15px;font-size:14px;font-weight:750}
+.settings-footnote,.demo-note{font-size:12px;color:#789183;line-height:1.55;margin:12px 4px 0}
+.settings-back{background:transparent;color:#24744b;border:0;font-size:13px;font-weight:750;min-height:42px;padding:0 0 4px;display:flex;align-items:center;gap:5px}
+.settings-back span{font-size:27px;line-height:1}
+.settings-subview h2{font-size:20px;letter-spacing:-.3px;margin:4px 0 18px;color:#173f2b}
+.settings-subpanel{background:white;border:1px solid #e0eae4;border-radius:17px;padding:18px 17px;line-height:1.65;color:#405d48}
+.settings-subpanel h3{font-size:15px;margin:7px 0 6px;color:#234f37}
+.settings-subpanel p{font-size:13px;line-height:1.65;margin:6px 0 16px}
+.settings-description{margin:0 0 15px!important;color:#728577}
+.profile-form{display:grid;gap:15px}.profile-form label,.mock-form-field{display:grid;gap:7px;font-size:13px;font-weight:700;color:#5c7867}
+.profile-form input,.mock-form-field input{min-height:46px;background:#f9fcfa;border:1px solid #d8e7dc;padding:12px;border-radius:12px;color:#234c36;font-size:14px;width:100%}
+.profile-form .primary-btn{margin-top:4px}
+.mock-form-field{margin:14px 0}
+.settings-info-line{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 0;border-bottom:1px solid #e9f0eb;font-size:13px}
+.settings-info-line:last-of-type{border:0}.settings-info-line strong{color:#1d5336;text-align:right}
+.signout-illustration{width:62px;height:62px;border-radius:18px;display:grid;place-items:center;background:#eaf4ee;font-size:28px;margin:4px auto 16px;text-align:center}
+#settings-panel-logout{text-align:center}
+@media(max-width:375px){.liquid-card{padding:14px 9px;gap:7px}.liquid-glass{width:32px;height:96px}.liquid-info strong{font-size:12.5px}.liquid-info small{font-size:10px}}
+
+.account-card{cursor:pointer}
+/* The sticky app header already names the subpage; avoid a second heading. */
+.settings-subview > h2 {display:none}
+
+/* SaltGuard MVP 1.1.2 — whole-card liquid levels (no bottle inside a card). */
+.liquid-widgets{gap:12px}
+.liquid-card{
+  position:relative;display:block;min-height:164px;
+  padding:18px 16px 15px;overflow:hidden;
+  border-radius:19px;border:1px solid #dbe8e0;
+  background:linear-gradient(180deg,#fff,#f6faf7);
+  isolation:isolate;box-shadow:0 4px 16px #1b50300a;
+}
+.liquid-card .liquid-fill{
+  position:absolute;z-index:0;left:0;bottom:0;width:100%;height:0;
+  border-radius:0;background:var(--water,#dfe9e2);
+  transition:height .65s ease,background .2s ease;
+  border-top:2px solid rgba(255,255,255,.7);
+  box-shadow:inset 0 8px 18px rgba(255,255,255,.13);
+}
+.liquid-card .liquid-info{
+  position:relative;z-index:1;display:flex;flex-direction:column;
+  align-items:flex-start;gap:7px;width:100%;min-height:129px;
+}
+.liquid-card .liquid-info small{
+  color:#506958;font-weight:850;font-size:10.5px;letter-spacing:.07em
+}
+.liquid-card .liquid-info .liquid-value{
+  display:block;color:#203c2d;font-size:clamp(20px,4.6vw,26px);
+  font-weight:850;letter-spacing:-.06em;line-height:1.12;
+  min-height:0;margin:0;white-space:nowrap;
+}
+.liquid-card .liquid-info .source-sub{
+  color:#385846;font-size:12px;line-height:1.35;min-height:16px;
+  font-weight:650
+}
+.liquid-card .liquid-caption{
+  margin-top:auto;background:rgba(255,255,255,.77)!important;
+  color:#2e5440!important;border:1px solid rgba(255,255,255,.66);
+  font-size:10.5px;line-height:1.2;padding:5px 8px;white-space:normal
+}
+.liquid-card[data-level="safe"]{--water:#f3d67a}
+#reserve-card[data-level="safe"]{--water:#91dac7}
+.liquid-card[data-level="warning"]{--water:#f8bd80}
+.liquid-card[data-level="danger"]{--water:#f2a09a}
+.liquid-card[data-level="unknown"]{--water:#dce5de}
+.liquid-card[data-level="unknown"] .liquid-value,.liquid-card[data-level="unknown"] .source-sub{color:#6d7e74}
+/* Wi-Fi only: always indicates the ESP32 link, not the phone's network. */
+.mobile-topbar .connection-pill,
+.mobile-topbar .connection-pill.bad{
+  font-size:0!important;letter-spacing:0!important;
+  width:37px;height:37px;min-height:37px;min-width:37px;
+  padding:0!important;gap:0!important;overflow:hidden;
+  border-radius:12px;display:inline-flex;align-items:center;justify-content:center;
+}
+.mobile-topbar .connection-pill{
+  background:#dff4e8!important;color:#16804b!important;border:1px solid #bee7cc!important;
+}
+.mobile-topbar .connection-pill.bad{
+  background:#fff0ee!important;color:#d74842!important;border:1px solid #f6ccc8!important;
+}
+.mobile-topbar .connection-pill::before,
+.mobile-topbar .connection-pill.bad::before{
+  content:'';display:block;flex:none;width:23px;height:23px;
+  border-radius:0;background:currentColor!important;box-shadow:none!important;
+  -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 8.82a15 15 0 0 1 20 0M5 12.86a10 10 0 0 1 14 0M8.5 16.4a5 5 0 0 1 7 0'/%3E%3Ccircle cx='12' cy='20' r='1.2' fill='black'/%3E%3C/svg%3E");
+  mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M2 8.82a15 15 0 0 1 20 0M5 12.86a10 10 0 0 1 14 0M8.5 16.4a5 5 0 0 1 7 0'/%3E%3Ccircle cx='12' cy='20' r='1.2' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+}
+@media(max-width:375px){
+  .liquid-card{padding:15px 11px 12px;min-height:155px}
+  .liquid-card .liquid-info{min-height:126px;gap:6px}
+  .liquid-card .liquid-info .liquid-value{font-size:19px}
+  .liquid-card .liquid-info small{font-size:10px}
+  .liquid-card .liquid-caption{font-size:10px;padding:5px 6px}
+}
+@media(prefers-reduced-motion:reduce){.liquid-card .liquid-fill{transition:none}}
+
+/* MVP 1.1.3: two dry areas may both request out-of-hours irrigation. */
+.home-priority .priority-zone{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:9px;padding:11px 0;border-top:1px solid #ebddc4;font-size:13px}
+.home-priority .priority-zone strong{font-size:13px}
+.home-priority .priority-zone>div{flex:1;min-width:145px;text-align:right;font-weight:650}
+.home-priority .priority-zone button{margin-left:auto;max-width:245px;width:100%}
+@media(max-width:360px){.home-priority .priority-zone>div{text-align:left}.home-priority .priority-zone button{max-width:none}}
+
+/* MVP 1.1.4: keep the two live summary widgets at stable heights when text changes.
+   Only these widgets are fixed; the other cards/pages remain content-driven.
+   Text stays readable using an internal scrollbar if unusually long. */
+#home-activity {
+  height: 106px; min-height: 106px; max-height: 106px;
+  overflow: hidden; padding: 13px 16px;
+}
+#home-activity > div:last-child { min-width: 0; max-height: 100%; overflow-y: auto; scrollbar-width: thin; }
+#home-activity .activity-symbol { flex-shrink: 0; }
+#home-water-primary {
+  height: 106px; min-height: 106px; max-height: 106px;
+  overflow: hidden; padding: 12px 16px;
+}
+#home-water-primary > div:last-child { min-width: 0; max-height: 100%; overflow-y: auto; scrollbar-width: thin; }
+@media(max-width:430px) {
+  #home-activity { height: 92px; min-height: 92px; max-height: 92px; padding: 10px 12px; gap: 10px; }
+  #home-water-primary { height: 96px; min-height: 96px; max-height: 96px; padding: 10px 12px; gap: 10px; }
+}
+
+.zone-rename{border:1px solid #cbded1;background:#f7fbf8;border-radius:8px;padding:5px 9px;color:#226147;font-size:12px;font-weight:700}
+
+/* Phase 1.1: cleaner safety control & time schedule. */
+.sg-emergency{margin:14px 0 16px;padding:13px 14px;border:1px solid #efd4d4;border-radius:16px;background:#fffafa}
+.sg-emergency-head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.sg-emergency-head strong{font-size:15px;color:#963334}
+.sg-emergency-head small{font-size:11px;color:#a25757}
+#sg-emergency-stop{width:100%;min-height:46px;background:#ad3036;border:0;border-radius:11px;color:#fff;font-size:14px;letter-spacing:.03em;font-weight:750;cursor:pointer}
+#sg-emergency-stop:disabled{opacity:.5;cursor:not-allowed}
+.home-time{display:block;padding:16px;border:1px solid #dfe9e2;border-radius:16px;background:linear-gradient(145deg,#fbfefb,#f1f7f2);margin:15px 0}
+.home-time-header{display:flex;align-items:center;gap:10px}
+.home-time-symbol{display:grid;place-items:center;background:#deede3;border-radius:11px;width:38px;height:38px;font-size:21px;color:#246f51}
+.home-time-header strong{display:block;font-size:15px;color:#234f3b}
+.home-time-header small{display:block;margin-top:2px;color:#6d7d71;font-size:12px}
+.home-time-windows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:15px}
+.home-time-window{background:#fff;border:1px solid #e3ece5;border-radius:12px;padding:13px 12px;min-width:0}
+.home-time-label{display:block;font-size:12px;color:#657f6d;margin-bottom:6px}
+.home-time-window strong{display:block;font-size:16px;letter-spacing:-.02em;color:#204a35;white-space:nowrap}
+@media(max-width:390px){.home-time-windows{gap:7px}.home-time-window{padding:10px 8px}.home-time-window strong{font-size:13px}}
+
+/* SaltGuard Phase 2.8: preferences and read-only valve monitor */
+.sg-hours-editor {margin:14px 0;padding:15px;}
+.sg-hours-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}
+.sg-hours-grid fieldset{border:1px solid #dce9df;border-radius:12px;padding:10px;min-width:0}
+.sg-hours-grid legend{font-weight:700;color:#176445;padding:0 4px}
+.sg-hours-grid label{display:block;font-size:12px;margin-top:8px;color:#496b59}
+.sg-hours-grid input{width:100%;box-sizing:border-box;margin-top:4px;border:1px solid #c9dcd0;padding:7px;border-radius:8px;background:white}
+.sg-valve-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:10px}
+.sg-valve-status{padding:10px;border-radius:10px;border:1px solid #dde9e1;background:#f8fbf9}
+.sg-valve-status strong{display:block;font-size:13px}.sg-valve-status span{font-size:12px;color:#51665a}
+.sg-valve-status.open{border-color:#89d5af;background:#eaf9ef}.sg-valve-status.open span{color:#087849}
+@media(max-width:370px){.sg-hours-grid{grid-template-columns:1fr}}
+
+/* Phase 2.9: compact, editable multi-window schedule settings */
+.sg-hours-list{display:grid;gap:11px;margin:16px 0}
+.sg-hour-card{padding:13px;border:1px solid #d9e8df;border-radius:15px;background:#fbfdfb}
+.sg-hour-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sg-hour-toggle{display:inline-flex;align-items:center;gap:9px;font-size:14px;font-weight:750;color:#214e3c}
+.sg-hour-toggle input{width:19px;height:19px;accent-color:#16815a}
+.sg-hour-delete{background:#fff;border:1px solid #e4dcd9;color:#8b5548;border-radius:9px;padding:6px 10px;cursor:pointer}
+.sg-hour-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:13px}
+.sg-hour-fields label{font-size:12px;color:#52685a;display:grid;gap:6px}
+.sg-hour-fields input{width:100%;min-width:0;border:1px solid #c8dad0;border-radius:10px;padding:10px;background:white;color:#183e2c;font-size:14px;box-sizing:border-box}
+.sg-hour-card.inactive{opacity:.57;background:#f4f6f4}
+.sg-hours-save{width:100%;margin-top:14px}
+.sg-hours-list + #sg-hours-add{width:100%;margin-top:0}
+
+/* Phase 3.8: no fixed duplicate status tiles; contextual safety banner only. */
+#home-priority[data-level="critical"]{background:#fff2ed;border-color:#edc9bd;color:#863e2d}
+#home-priority[data-level="critical"] .home-priority-head span{background:#ffe0d5;color:#893a25}
+#home-priority[data-level="critical"] p{color:#8c5142}
+
+/* Phase 4.2: show status only when attention is needed. */
+.data-quality-note{padding:9px 12px;border:1px solid #e8d3a5;background:#fff7e8;color:#795a1f;border-radius:10px;font-size:12px;margin:0 0 12px}
+.notice-advice{font-size:12px;line-height:1.5;background:#f3f8f5;padding:9px 10px;border-radius:8px;color:#315542}
+.timed-hold-controls{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:9px 0 2px;border-top:1px solid #e4ede7;padding-top:10px;font-size:12px}
+.timed-hold-controls select{border:1px solid #ccded0;border-radius:8px;padding:7px;color:#284d35;background:white}
+.timed-hold-controls button{min-height:33px;padding:6px 10px}
+.timed-hold-controls small{flex-basis:100%;color:#647b69;font-size:11px}
+
+/* Unified irrigation switch: one status line, no duplicate timed-hold control. */
+.zone-hold-meta{display:flex;align-items:center;gap:10px;justify-content:flex-end;font-size:12px;color:var(--muted);margin:3px 0 10px}
+.zone-hold-meta[hidden]{display:none}
+.hold-change{background:none;border:0;text-decoration:underline;color:#256343;font:inherit;cursor:pointer;padding:5px}
+.hold-change:disabled{opacity:.4;cursor:not-allowed}
+.action-choice-wrap{display:flex;flex-direction:column;gap:7px;margin:14px 0;text-align:left}
+.action-choice-wrap[hidden]{display:none}
+.action-choice-wrap label{font-size:13px;font-weight:600}
+.action-choice-wrap select{width:100%;font-size:14px;border:1px solid #bfd2c4;border-radius:9px;padding:10px;background:#fff;color:#263e31}

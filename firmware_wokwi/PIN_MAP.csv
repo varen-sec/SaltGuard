@@ -1,0 +1,32 @@
+﻿Group,Signal,GPIO / Pin,Wokwi part / net,Function / note
+Central,SALINITY,GPIO34,salt,Potentiometer; analog salinity simulation
+Central,CANAL LEVEL,GPIO35,canal,Potentiometer; simulated canal level percentage
+Central,RAIN,GPIO32,rain,Potentiometer; simulated rain percentage
+Zone 1,SOIL MOISTURE Z1,GPIO33,soilZ1,Potentiometer; LOCAL mode ADC input
+Zone 2,SOIL MOISTURE Z2,GPIO39 / VN,soilZ2,Potentiometer; ADC1 input-only pin; LOCAL mode
+Central,AIR TEMPERATURE + RH,GPIO26,dht,DHT22 DATA; 10k external pull-up to 3V3
+Central,WATER TEMPERATURE,GPIO13,waterTemp,DS18B20 DQ; 4.7k pull-up to 3V3
+Central,TANK ULTRASONIC TRIG,GPIO5,tankSensor,HC-SR04 TRIG
+Central,TANK ULTRASONIC ECHO,GPIO27,tankSensor,HC-SR04 ECHO
+Central,MASTER SWITCH,GPIO36 / VP,masterSwitch,Physical SPDT; OFF at boot; OFF-to-ON required after reset
+Central,PAUSE BUTTON,GPIO17 / TX2,pause,Yellow pushbutton; INPUT_PULLUP
+Central,MANUAL BUTTON,GPIO15,fault,Blue pushbutton; 10k external pull-up; release during reset (strapping pin)
+Central,ACK BUTTON,GPIO14,refill,"Red pushbutton; short press mute, 2s hold emergency recovery"
+Central,IRRIGATION PUMP RELAY,GPIO16 / RX2,pumpRelay,Shared irrigation pump relay control; simulated active-high
+Central,TANK FILL RELAY,GPIO4,fillRelay,Independent tank filling pump relay; mutually exclusive with irrigation
+Central,BUZZER,GPIO25,buzzer,Alarm sound output
+Central,IRRIGATION STATUS LED,GPIO2,panel_water,Blue; indicates irrigation pump state
+Central,ALARM STATUS LED,GPIO12,panel_alarm,Red; alarm indicator
+Central,74HC595 DATA,GPIO18,sr:DS,Shift register serial data
+Central,74HC595 CLOCK,GPIO19,sr:SHCP,Shift register shift clock
+Central,74HC595 LATCH,GPIO23,sr:STCP,Shift register storage/latch clock
+Valve,V1,74HC595 Q0,v1ServoAdapter / v1Led,CANAL -> shared irrigation pump
+Valve,V2,74HC595 Q1,v2ServoAdapter / v2Led,TANK -> shared irrigation pump
+Valve,V3,74HC595 Q2,v3ServoAdapter / v3Led,Irrigation Zone 1
+Valve,V4,74HC595 Q3,v4ServoAdapter / v4Led,Irrigation Zone 2
+Valve,V5,74HC595 Q4,v5ServoAdapter / v5Led,CANAL -> tank fill path
+Panel,READY LED,74HC595 Q5,panel_ready,Ready status
+Panel,NOTICE LED,74HC595 Q6,panel_notice,Pause/refill/canal notice; frees GPIO15 for MANUAL
+Central,LCD SDA,GPIO21,lcd,I2C data; address 0x27
+Central,LCD SCL,GPIO22,lcd,I2C clock
+Serial,UART0 RX,GPIO3 / RX0,USB Serial,Reserved for Serial Monitor input; no Wokwi external wiring

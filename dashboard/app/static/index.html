@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#102b25">
+  <title>SaltGuard • Trung tâm điều hành nông trại</title>
+  <link rel="stylesheet" href="/static/styles.css">
+  <script src="/static/dashboard.js" defer></script>
+  <script src="/static/twin.js" defer></script>
+  <script src="/static/engineer_config.js?v=253" defer></script>
+</head>
+<body><div style="position:fixed;right:12px;bottom:12px;z-index:1000;background:#fff;padding:10px 18px;border:1px solid #cbd9cd;border-radius:20px;box-shadow:0 5px 25px #1232"><a href="/" style="color:#287348;text-decoration:none;font-weight:700">← Giao diện nông dân</a></div>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-symbol"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 5c-7 9-12 14-12 21a12 12 0 0 0 24 0C32 19 27 14 20 5Z" stroke="currentColor" stroke-width="2.7"/><path d="M13 28c8-10 16-7 19-14M18 20l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div><strong>SALTGUARD<span class="brand-period">.</span></strong><small>FARM INTELLIGENCE</small></div>
+      </div>
+      <div class="side-caption">KHÔNG GIAN LÀM VIỆC</div>
+      <nav class="nav" aria-label="Menu chính">
+        <button type="button" class="nav-link selected" data-view="overview"><span class="nav-ico">◫</span>Tổng quan</button>
+        <button type="button" class="nav-link" data-view="zones"><span class="nav-ico">♧</span>Vùng tưới</button>
+        <button type="button" class="nav-link" data-view="history"><span class="nav-ico">⌁</span>Biểu đồ & lịch sử</button>
+        <button type="button" class="nav-link" data-view="alerts"><span class="nav-ico">♢</span>Cảnh báo & sự kiện</button>
+        <button type="button" class="nav-link" data-view="twin"><span class="nav-ico">◈</span>Digital Twin Lab</button>
+        <button type="button" class="nav-link" data-view="settings"><span class="nav-ico">⚙</span>Hệ thống & MQTT</button>
+      </nav>
+      <div class="side-bottom">
+        <div class="side-system"><span class="dot" id="side-led"></span><span id="side-network">Chưa có dữ liệu</span></div>
+        <p>SaltGuard 2.4<br><span>ESP32 / Wokwi · Demo IoT</span></p>
+      </div>
+    </aside>
+    <div class="main">
+      <header class="topbar">
+        <div class="breadcrumbs"><span>Trang trại của tôi</span><span class="slash">/</span><strong id="page-breadcrumb">Tổng quan</strong></div>
+        <div class="header-right"><span class="live-chip" id="live-badge"><span class="dot"></span>CHƯA KẾT NỐI</span><span id="header-clock">--:--:--</span><div class="avatar">SG</div></div>
+      </header>
+      <div class="content">
+        <section class="view active" id="view-overview">
+          <div class="section-heading"><div><p class="eyebrow">FARM CONTROL CENTER / 01</p><h1>Tổng quan nông trại</h1><p>Giám sát nguồn nước, hệ thống tưới và môi trường trong một màn hình.</p></div><div class="stamp"><span>Nhận dữ liệu lần cuối</span><strong id="last-seen">Chưa có dữ liệu</strong></div></div>
+          <div class="feature-card">
+            <div class="feature-copy"><div class="feature-kicker"><span class="pulse"></span> HỆ THỐNG TƯỚI THÔNG MINH</div><h2 id="hero-heading">Đang chờ ESP32 gửi dữ liệu</h2><p id="hero-description">Hãy chạy SaltGuard 2.2 trên Wokwi và giữ chương trình Python đang hoạt động. Dashboard tự đồng bộ khi có dữ liệu MQTT.</p><div class="feature-foot"><span id="hero-source">Nguồn: —</span><span class="sep"></span><span id="hero-mode">Chế độ: —</span></div></div>
+            <div class="feature-visual" aria-hidden="true"><svg viewBox="0 0 390 190" fill="none"><path d="M16 144Q84 91 146 127T277 98T382 125" stroke="#99e3bc" stroke-width="2" opacity=".5"/><path d="M16 165Q84 112 146 148T277 119T382 146" stroke="#99e3bc" stroke-width="2" opacity=".28"/><circle cx="258" cy="60" r="50" stroke="#a4efca" opacity=".6"/><circle cx="258" cy="60" r="69" stroke="#a4efca" opacity=".22"/><path d="M258 27c-24 31-28 39-28 52a28 28 0 0 0 56 0c0-13-4-21-28-52Z" fill="#b3f1d4" opacity=".92"/><path d="M240 81c15-19 32-22 46-23" stroke="#157958" stroke-width="4" stroke-linecap="round"/><path d="M245 65l12 17" stroke="#157958" stroke-width="4" stroke-linecap="round"/><path d="M80 130v-57m-26 42 26-50 26 50" stroke="#a4efca" stroke-width="3" stroke-linecap="round"/><path d="M125 162v-75m-25 54 25-61 25 61" stroke="#a4efca" stroke-width="3" stroke-linecap="round"/></svg></div>
+          </div>
+          <div class="metrics">
+            <div class="metric"><div class="metric-head">Độ mặn nước kênh<span class="metric-icon">≋</span></div><div class="metric-val"><strong id="m-salt">—</strong><small>‰</small></div><p id="m-salt-note">Chưa nhận dữ liệu</p></div>
+            <div class="metric"><div class="metric-head">Nước trong bồn<span class="metric-icon">◕</span></div><div class="metric-val"><strong id="m-tank">—</strong><small>lít</small></div><p id="m-tank-note">Dung tích mô phỏng: 2000 L</p><div class="progress"><i id="tank-bar"></i></div></div>
+            <div class="metric"><div class="metric-head">Độ ẩm vùng Z1<span class="metric-icon">♧</span></div><div class="metric-val"><strong id="m-z1">—</strong><small>%</small></div><p id="m-z1-note">Cảm biến đất mô phỏng</p><div class="progress"><i id="z1-bar"></i></div></div>
+            <div class="metric"><div class="metric-head">Độ ẩm vùng Z2<span class="metric-icon">♧</span></div><div class="metric-val"><strong id="m-z2">—</strong><small>%</small></div><p id="m-z2-note">Cảm biến đất mô phỏng</p><div class="progress"><i id="z2-bar"></i></div></div>
+          </div>
+          <div class="columns columns-main">
+            <div class="panel water-panel"><div class="panel-head"><div><h3>Luồng cấp nước</h3><p>Hai nguồn nước · Một bơm chung · Hai nhánh tưới</p></div><span class="small-pill" id="flow-pill">CHỜ DỮ LIỆU</span></div>
+              <div class="flow-canvas" id="flow-scene"><div class="flow-sources"><div class="water-node" id="canal-node"><span class="node-emoji">≋</span><div><strong>Kênh tưới</strong><small id="flow-canal">Chờ dữ liệu</small></div></div><div class="water-node" id="tank-node"><span class="node-emoji">◉</span><div><strong>Bồn dự trữ</strong><small id="flow-tank">Chờ dữ liệu</small></div></div></div><div class="flow-route"><div class="route-line"><i></i></div><div class="water-node pump-node" id="pump-node"><span class="node-emoji">↻</span><div><strong>Bơm chung</strong><small id="flow-pump">Chưa rõ</small></div></div><div class="route-line"><i></i></div></div><div class="flow-zones"><div class="water-node" id="flow-z1"><span class="node-emoji">♧</span><div><strong>Vùng Z1</strong><small id="flow-z1-text">—</small></div></div><div class="water-node" id="flow-z2"><span class="node-emoji">♧</span><div><strong>Vùng Z2</strong><small id="flow-z2-text">—</small></div></div></div></div>
+              <div class="flow-legend"><span><i class="key-live"></i>Đang cấp nước</span><span><i class="key-off"></i>Tạm ngừng</span><span class="flow-hint">Dòng chảy hiển thị theo lệnh bơm/van, chưa phải phép đo lưu lượng.</span></div>
+            </div>
+            <div class="panel control-panel"><div class="panel-head"><div><h3>Điều khiển nhanh</h3><p>Lệnh được gửi đến ESP32 qua MQTT</p></div><span class="small-pill" id="mode-pill">—</span></div>
+              <div class="control-status"><span>Trạng thái hiện tại</span><strong id="control-state">—</strong><small id="control-reason">—</small></div>
+              <p class="safety-note">Công tắc cho phép vận hành nằm trên bộ điều khiển Wokwi. App không thể bật hoặc tắt tổng từ xa.</p>
+              <button class="btn btn-soft full" data-command="STATUS">↻ Yêu cầu ESP32 cập nhật trạng thái</button>
+              <div class="command-feedback" id="cmd-feedback" role="status" aria-live="polite">Chỉ gửi lệnh khi ESP32 và MQTT đều trực tuyến.</div>
+              <p class="safety-note">Bảo vệ tại ESP32 luôn có ưu tiên cao nhất: không thể ép bơm bật khi FAULT hoặc nguồn nước không an toàn.</p>
+            </div>
+          </div>
+          <div class="columns columns-bottom">
+            <div class="panel"><div class="panel-head"><div><h3>Diễn biến độ ẩm đất</h3><p>Dữ liệu đã ghi vào SQLite · 30 phút gần nhất</p></div><span class="small-pill">Z1 / Z2</span></div><div class="chart-box"><canvas id="overview-chart" aria-label="Biểu đồ độ ẩm đất"></canvas><div class="chart-empty" id="overview-empty">Chưa có dữ liệu biểu đồ</div></div></div>
+            <div class="panel"><div class="panel-head"><div><h3>Hoạt động gần đây</h3><p>Chuyển trạng thái và phản hồi điều khiển</p></div><button class="text-link" data-goto="alerts">Xem tất cả →</button></div><div class="event-list" id="recent-events"><div class="empty">Chưa có sự kiện.</div></div></div>
+          </div>
+        </section>
+        <section class="view" id="view-zones"><div class="section-heading"><div><p class="eyebrow">ZONE MANAGEMENT / 02</p><h1>Quản lý vùng tưới</h1><p>Mỗi vùng có van và độ ẩm riêng, dùng chung bộ đo nước và bơm.</p></div></div><div class="zone-grid" id="zone-cards"></div><div class="panel"><div class="panel-head"><div><h3>Cấu hình số vùng từ xa</h3><p>Khả dụng khi ESP32 ở chế độ DYNAMIC hoặc TWIN.</p></div></div><div class="control-row compact"><button class="btn btn-soft" data-command="ZONES:1">Chỉ dùng Z1</button><button class="btn btn-soft" data-command="ZONES:2">Dùng cả Z1 + Z2</button></div><p class="safety-note">Đây là thay đổi vùng đang hoạt động trong phần mềm. Khi triển khai thật, vùng mới vẫn cần van, cảm biến và đường ống riêng.</p></div></section>
+        <section class="view" id="view-history"><div class="section-heading"><div><p class="eyebrow">ANALYTICS / 03</p><h1>Biểu đồ & lịch sử</h1><p>Dữ liệu đo mô phỏng đã lưu, có thể quan sát xu hướng và tải CSV.</p></div><div class="history-actions"><select id="history-range" aria-label="Khoảng thời gian"><option value="15">15 phút</option><option value="30" selected>30 phút</option><option value="60">1 giờ</option><option value="180">3 giờ</option><option value="1440">24 giờ</option></select><button class="btn btn-soft" id="export-csv">↓ Xuất CSV</button></div></div><div class="chart-grid"><div class="panel"><div class="panel-head"><div><h3>Độ ẩm vùng tưới</h3><p>Z1 và Z2 (%)</p></div></div><div class="chart-box large"><canvas id="soil-chart"></canvas></div></div><div class="panel"><div class="panel-head"><div><h3>Độ mặn nước kênh</h3><p>Giá trị mô phỏng (‰)</p></div></div><div class="chart-box large"><canvas id="salinity-chart"></canvas></div></div><div class="panel"><div class="panel-head"><div><h3>Lượng nước trong bồn</h3><p>Thể tích còn lại (L)</p></div></div><div class="chart-box large"><canvas id="tank-chart"></canvas></div></div><div class="panel"><div class="panel-head"><div><h3>Nhiệt độ môi trường</h3><p>Không khí và nước (°C)</p></div></div><div class="chart-box large"><canvas id="temperature-chart"></canvas></div></div></div><p class="footnote">Các mốc theo giờ máy tính nhận dữ liệu MQTT, không phải đồng hồ của ESP32. Khoảng thời gian thiếu dữ liệu không được nội suy thành phép đo mới.</p></section>
+        <section class="view" id="view-alerts"><div class="section-heading"><div><p class="eyebrow">SYSTEM EVENTS / 04</p><h1>Cảnh báo & nhật ký</h1><p>Ghi nhận thay đổi trạng thái và phản hồi lệnh từ ESP32.</p></div></div><div class="alert-banner" id="alert-banner">Chưa có dữ liệu thời gian thực. Cảnh báo được tạo khi nhận trạng thái hợp lệ từ ESP32.</div><div class="panel"><div class="panel-head"><div><h3>Nhật ký hoạt động</h3><p>Dữ liệu lưu tại máy tính · SQLite</p></div></div><div id="all-events" class="event-list large-list"><div class="empty">Chưa có sự kiện nào.</div></div></div></section>
+
+        <section class="view" id="view-twin">
+          <div class="section-heading"><div><p class="eyebrow">AGRICULTURAL SIMULATION / 04</p><h1>Digital Twin Lab</h1><p>Thử nghiệm điều kiện xâm nhập mặn, hạn hán, mưa và theo dõi phản hồi của ESP32.</p></div><span class="small-pill" id="twin-pill">CHƯA CHẠY</span></div>
+          <div class="twin-info"><strong>Phân biệt nguồn dữ liệu</strong><p>Độ mặn, nước kênh, độ ẩm đất, pH, EC nước bồn, chỉ số muối đất và lưu lượng trong phòng thí nghiệm này đều do Python <b>giả lập</b>. ESP32 Wokwi chỉ thực thi thuật toán tưới theo dữ liệu nhận qua MQTT. DHT22/DS18B20 vẫn do linh kiện Wokwi mô phỏng. Không dùng cho tưới nông nghiệp thật.</p></div>
+          <div class="panel" style="margin-bottom:18px"><div class="panel-head"><div><h3>Chọn kịch bản môi trường</h3><p>Chọn tình huống → Bật Digital Twin → quan sát SaltGuard tự chọn nguồn và điều phối tưới.</p></div><span class="small-pill">DỮ LIỆU GIẢ LẬP</span></div>
+            <div class="twin-scenarios">
+              <button class="twin-scenario chosen" data-scenario="NORMAL"><strong>☀ Bình thường</strong><span>Kênh đủ nước, độ mặn thấp</span></button>
+              <button class="twin-scenario" data-scenario="SALINITY"><strong>≋ Xâm nhập mặn</strong><span>Độ mặn tăng, ưu tiên bồn dự trữ</span></button>
+              <button class="twin-scenario" data-scenario="DROUGHT"><strong>◌ Hạn hán</strong><span>Kênh cạn, đất mất ẩm nhanh</span></button>
+              <button class="twin-scenario" data-scenario="RAIN"><strong>☂ Mưa</strong><span>Mưa tăng, đất phục hồi độ ẩm</span></button>
+            </div>
+            <div class="twin-actions"><button class="btn btn-primary" id="twin-start">▶ Bắt đầu Digital Twin</button><button class="btn btn-danger" id="twin-stop">■ Dừng và về DYNAMIC</button><button class="btn btn-soft" id="twin-prepare-refill" title="Chỉ dùng để nghiệm thu; đặt bồn 25L và cả hai vùng đủ ẩm">Thử nạp bồn tự động (mô phỏng)</button><button class="btn btn-soft" id="twin-prepare-irrigation" title="Giả lập đất Z1 khô trong lúc nạp bồn">Thử ưu tiên tưới trước</button><span id="twin-msg" aria-live="polite">Chỉ bắt đầu khi Wokwi trực tuyến và đang ở DYNAMIC.</span></div>
+          </div>
+          <div class="twin-stats">
+            <div class="metric"><div class="metric-head">Độ mặn kênh <span class="metric-icon">≋</span></div><div class="metric-val"><strong id="t-salt">—</strong><small>‰</small></div><p>Mô hình Python → ESP32</p></div>
+            <div class="metric"><div class="metric-head">pH nước kênh <span class="metric-icon">◉</span></div><div class="metric-val"><strong id="t-ph">—</strong><small>pH</small></div><p>Giả lập, chỉ giám sát</p></div>
+            <div class="metric"><div class="metric-head">Độ mặn nước bồn <span class="metric-icon">≋</span></div><div class="metric-val"><strong id="t-ec">—</strong><small>‰</small></div><p>Mô phỏng riêng nước bồn, không đo</p></div>
+            <div class="metric"><div class="metric-head">Lưu lượng <span class="metric-icon">◕</span></div><div class="metric-val"><strong id="t-flow">—</strong><small>L/phút</small></div><p>Giả định bơm 6 L/phút, không có sensor</p></div>
+            <div class="metric"><div class="metric-head">Độ ẩm Z1 <span class="metric-icon">♧</span></div><div class="metric-val"><strong id="t-soil1">—</strong><small>%</small></div><p>Thay đổi khi ESP32 tưới Z1</p></div>
+            <div class="metric"><div class="metric-head">Độ ẩm Z2 <span class="metric-icon">♧</span></div><div class="metric-val"><strong id="t-soil2">—</strong><small>%</small></div><p>Thay đổi khi ESP32 tưới Z2</p></div>
+            <div class="metric"><div class="metric-head">Nước bồn <span class="metric-icon">◕</span></div><div class="metric-val"><strong id="t-tank">—</strong><small>L</small></div><p>Giảm khi cấp từ bồn</p></div>
+            <div class="metric"><div class="metric-head">Nước đã cấp <span class="metric-icon">↝</span></div><div class="metric-val"><strong id="t-total">—</strong><small>L</small></div><p>Ước tính theo lưu lượng giả định</p></div>
+          </div>
+          <div class="panel" style="margin:20px 0"><div class="panel-head"><div><h3>Nạp bồn và theo dõi chất lượng đất (mô phỏng)</h3><p>Không dùng EC/pH/Na đất để tự điều khiển tưới hoặc đề xuất cải tạo đất.</p></div></div><div class="setting-line"><span>Bơm nạp nước kênh vào bồn</span><strong id="t-fill">—</strong></div><div class="setting-line"><span>Tổng nước đã nạp (ước tính)</span><strong id="t-filled">—</strong></div><div class="setting-line"><span>EC đất Z1/Z2 (dS/m)</span><strong id="t-ecsoil">—</strong></div><div class="setting-line"><span>pH đất Z1/Z2</span><strong id="t-phsoil">—</strong></div><div class="setting-line"><span>Na đất Z1/Z2 (mg/kg)</span><strong id="t-nasoil">—</strong></div><p class="safety-note">Tất cả các chỉ số trên thuộc mô hình Python, không có cảm biến EC đất, pH đất hoặc Na đất gắn trong sơ đồ Wokwi.</p></div>
+          <div class="columns columns-bottom"><div class="panel"><div class="panel-head"><div><h3>Độ ẩm theo Digital Twin</h3><p>Lịch sử mô phỏng lưu trong SQLite · chỉ số Z1/Z2</p></div></div><div class="chart-box"><canvas id="twin-chart"></canvas></div></div><div class="panel"><div class="panel-head"><div><h3>Trạng thái điều khiển thực tế trên Wokwi</h3><p>Đọc từ MQTT telemetry của ESP32</p></div></div><div class="twin-readout" id="twin-esp-state">Chưa nhận ESP32</div><p class="safety-note">Khi mất dữ liệu Digital Twin quá 12 giây, firmware chuyển HOLD_NO_WATER. Khi có dữ liệu lại, đợi REST 2 giây mô phỏng trước khi tưới.</p></div></div>
+        </section>
+        <section class="view" id="view-settings"><div class="panel" id="crop-config-panel" style="margin-bottom:18px"><div class="panel-head"><div><h3>Ngưỡng theo dõi đất theo từng khu vực</h3><p>Do người có chuyên môn thiết lập · Chỉ cảnh báo, KHÔNG điều khiển tưới.</p></div></div><p style="font-size:12px;line-height:1.8;color:#6e8071">Không có ngưỡng mặc định theo cây trồng. Để trống khi chưa có thông tin kỹ thuật xác thực. EC (dS/m), pH, Na (mg/kg): dữ liệu hiện là mô phỏng.</p><form id="crop-config-form"><div id="crop-config-zones"></div><button class="btn btn-primary" type="submit">Lưu cấu hình vùng và ngưỡng</button><p id="crop-config-result" role="status" style="margin-top:12px"></p></form>
+<div style="border:1px dashed #8ba993;border-radius:14px;padding:18px;margin-top:20px;background:#f4f9f3">
+  <h3 style="margin:0 0 8px;color:#28573b">F25-08 · Thử cảnh báo đất (chỉ mô phỏng)</h3>
+  <p style="font-size:12px;line-height:1.8;color:#58715d">Hãy lưu ngưỡng theo dõi phía trên trước. Nút thử chỉ thay đổi EC, pH và Na của mô hình Python; không đổi độ ẩm, độ mặn kênh, mức bồn hay lệnh điều khiển ESP32. Chỉ số này không phải phép đo thực tế.</p>
+  <div class="button-row"><button class="btn btn-soft" type="button" id="soil-warning-test">Tạo cảnh báo đất thử nghiệm</button><button class="btn btn-soft" type="button" id="soil-warning-restore">Khôi phục chỉ số đất</button></div>
+  <p id="soil-test-result" role="status" aria-live="polite" style="margin:10px 0 0;font-size:12px;color:#315b42">Cần bật Digital Twin trước khi kiểm thử.</p>
+</div>
+</div><div class="section-heading"><div><p class="eyebrow">CONNECTIVITY / 05</p><h1>Thông tin hệ thống</h1><p>Kiểm tra đường truyền MQTT và danh sách dữ liệu đo đang hỗ trợ.</p></div></div><div class="settings-grid"><div class="panel"><div class="panel-head"><div><h3>Kết nối dữ liệu</h3><p>Python Backend ↔ MQTT ↔ ESP32 Wokwi</p></div></div><div class="setting-line"><span>MQTT Broker</span><strong id="setting-broker">—</strong></div><div class="setting-line"><span>Topic Root</span><code id="setting-root">—</code></div><div class="setting-line"><span>Python ↔ Broker</span><strong id="setting-mqtt">—</strong></div><div class="setting-line"><span>ESP32 telemetry</span><strong id="setting-device">—</strong></div><div class="setting-line"><span>Chế độ máy ảo</span><strong id="setting-mode">—</strong></div><div class="setting-line"><span>Ghi lịch sử</span><strong>SQLite trên máy tính</strong></div><div class="setting-line"><span>Dữ liệu nhận cuối</span><strong id="setting-last">—</strong></div></div><div class="panel"><div class="panel-head"><div><h3>Giới hạn bản mô phỏng</h3></div></div><p class="setting-text">Dữ liệu EC/salinity, đất và mực nước hiện do Wokwi mô phỏng; DHT22 và DS18B20 là linh kiện ảo. Chúng tôi chưa có cảm biến pH, chì, EC nước bồn, lưu lượng, hay đo thực tế.</p><div class="availability"><div><span>Độ mặn · Độ ẩm · Mực bồn</span><strong class="av-yes">ĐÃ CÓ</strong></div><div><span>Nhiệt độ · Độ ẩm không khí</span><strong class="av-yes">ĐÃ CÓ</strong></div><div><span>pH · Độ đục · Chì / kim loại nặng</span><strong class="av-no">CHƯA CÓ</strong></div><div><span>Lưu lượng nước · Lượng nước tiết kiệm</span><strong class="av-no">CHƯA ĐO</strong></div></div></div></div><div class="panel public-note"><h3>Chỉ dùng để học tập và trình diễn</h3><p>Broker <code>broker.emqx.io</code> công cộng không yêu cầu xác thực. Dữ liệu thử nghiệm và lệnh có thể bị người khác nhìn thấy hoặc gửi vào topic này. Không nhập thông tin cá nhân, không kết nối thiết bị nông nghiệp thật và không mở ứng dụng Python ra Internet. Giữ máy chủ ở <code>127.0.0.1</code>.</p></div></section>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

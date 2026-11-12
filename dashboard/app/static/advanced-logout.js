@@ -1,0 +1,1 @@
+document.querySelectorAll('.advanced-logout').forEach(b=>{b.addEventListener('click',async()=>{try{await fetch('/api/advanced/logout',{method:'POST'})}finally{location.assign('/?page=settings')}})});

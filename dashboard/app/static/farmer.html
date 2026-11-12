@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#edf5ef">
+<title>SaltGuard · Vườn của tôi</title><link rel="stylesheet" href="/static/farmer.css?v=phase38"><script defer src="/static/farmer.js?v=443"></script></head>
+<body><div class="app-shell">
+<header class="mobile-topbar" role="banner">
+  <div class="mobile-topbar-inner">
+    <h1 id="page-title" class="mobile-topbar-title">Trang chủ</h1>
+    <span id="online-pill" class="connection-pill bad" role="status" aria-live="polite" aria-label="Trạng thái kết nối ESP32: Ngoại tuyến" title="ESP32 ngoại tuyến">Ngoại tuyến</span>
+  </div>
+</header>
+
+<nav class="bottom-nav" aria-label="Điều hướng">
+<button type="button" class="navitem selected" data-page="home" aria-current="page"><span class="navicon" aria-hidden="true">⌂</span><span>Trang chủ</span></button>
+<button type="button" class="navitem" data-page="zones"><span class="navicon" aria-hidden="true">♧</span><span>Khu vực</span></button>
+<button type="button" class="navitem" data-page="alerts"><span class="navicon" aria-hidden="true">◉</span><span>Thông báo</span><span class="counter" id="alert-count" hidden>0</span></button>
+<button type="button" class="navitem" data-page="journal"><span class="navicon" aria-hidden="true">◷</span><span>Nhật ký</span></button>
+<button type="button" class="navitem" data-page="settings"><span class="navicon" aria-hidden="true">⚙</span><span>Cài đặt</span></button>
+</nav>
+<main class="main">
+<section id="page-home" class="page active">
+<div id="home-priority" class="home-priority" hidden></div>
+
+
+<div class="section-row"><h2>Nguồn nước</h2></div>
+<div class="source-pair liquid-widgets">
+  <article class="source-box liquid-card" id="salinity-card" data-level="unknown" aria-label="Độ mặn nước kênh">
+    <div class="liquid-fill" id="salinity-fill" aria-hidden="true"></div>
+    <div class="liquid-info"><small>ĐỘ MẶN KÊNH</small><strong id="canal-detail" class="liquid-value">—</strong><span id="canal-status" class="source-sub">—</span><span id="salinity-level" class="liquid-caption">Chờ dữ liệu</span></div>
+  </article>
+  <article class="source-box liquid-card" id="reserve-card" data-level="unknown" aria-label="Mực nước bồn dự trữ">
+    <div class="liquid-fill" id="reserve-fill" aria-hidden="true"></div>
+    <div class="liquid-info"><small>BỒN DỰ TRỮ</small><strong id="tank-liters" class="liquid-value">—</strong><span id="tank-status" class="source-sub">—</span><span id="reserve-level" class="liquid-caption">Chờ dữ liệu</span></div>
+  </article>
+</div>
+<section class="settings-details" style="margin:14px 0;padding:14px"><h2>Điều kiện môi trường</h2><div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px"><div><small>Không khí</small><strong id="sg-air-temp" style="display:block">—</strong></div><div><small>Độ ẩm KK</small><strong id="sg-air-rh" style="display:block">—</strong></div><div><small>Nhiệt độ nước</small><strong id="sg-water-temp" style="display:block">—</strong></div></div></section>
+<section class="settings-details" style="margin:14px 0;padding:14px"><h2>Phiên tưới hiện tại</h2><div id="sg-water-empty" class="sg-water-empty">Không có phiên tưới</div><div id="sg-water-metrics" class="sg-water-grid" hidden><div class="sg-water-stat"><small>Đã cấp (ước tính)</small><strong id="sg-water-used">—</strong></div><div class="sg-water-stat"><small>Còn lại tối đa</small><strong id="sg-water-left">—</strong></div><div class="sg-water-stat"><small>Thời gian còn lại</small><strong id="sg-water-time">—</strong></div></div></section>
+<link rel="stylesheet" href="/static/irrigation-volume.css?v=443">
+<div class="section-row"><h2>Khu vực của tôi</h2><button type="button" class="link-btn" data-jump="zones">Xem chi tiết ›</button></div><div id="home-zones" class="zone-brief-list"></div>
+<section class="sg-emergency" aria-label="Dừng khẩn cấp">
+  <div class="sg-emergency-head"><strong>Dừng khẩn cấp</strong><small id="sg-emergency-status">Chờ dữ liệu</small></div>
+  <button id="sg-emergency-stop" type="button">DỪNG KHẨN CẤP</button>
+</section>
+
+<section class="home-time" aria-label="Giờ tưới ưu tiên">
+  <div class="home-time-header"><span aria-hidden="true" class="home-time-symbol">◷</span><div><strong>Giờ tưới ưu tiên</strong><small>Tự động xét độ ẩm trong các khoảng giờ này</small></div></div>
+  <div class="home-time-windows">
+    <div class="home-time-window"><span class="home-time-label">☀ Buổi sáng</span><strong id="sg-am-hours">05:30 – 09:00</strong></div>
+    <div class="home-time-window"><span class="home-time-label">☾ Buổi chiều</span><strong id="sg-pm-hours">16:30 – 18:30</strong></div>
+  </div>
+</section>
+
+</section>
+<section id="page-zones" class="page"><div class="zone-page-sub">Chọn từng vườn để theo dõi và cho phép tưới tự động.</div><div class="zone-grid" id="detailed-zones"></div><div class="settings-details" style="margin-top:16px;padding:16px"><h2>Kết nối cảm biến vùng mới</h2><p class="settings-description">Quét mã QR trên cảm biến để đọc thông tin ghép nối. MVP hiện chỉ hỗ trợ tối đa hai vùng đã cấu hình; chưa có giao thức đăng ký cảm biến mới nên mã quét không tự tạo vùng đang hoạt động.</p><button type="button" class="outline-btn" id="qr-zone-open">Mở camera quét QR</button><div id="qr-zone-panel" hidden><video id="qr-zone-video" autoplay playsinline muted style="display:block;width:100%;max-width:400px;border-radius:12px;margin:12px 0;background:#202b25"></video><button type="button" class="outline-btn" id="qr-zone-close">Đóng camera</button><p id="qr-zone-status" role="status">Đang chuẩn bị camera...</p></div></div>
+<section class="settings-details sg-valves" aria-label="Trạng thái năm van">
+  <h2>Trạng thái 5 van</h2>
+  <div class="sg-valve-grid" id="sg-valve-grid"></div>
+</section>
+<section class="settings-details reserve-panel"><h2>Nước dự trữ</h2><div class="settings-inner"><div class="setting-row"><span>Tự nạp bồn</span><button type="button" class="switch" id="refill-switch" role="switch" aria-checked="false" aria-label="Bật/tắt nạp bồn tự động" disabled><span></span></button></div><button type="button" class="outline-btn" id="fill-request" disabled>Nạp nước vào bồn</button></div></section>
+</section>
+<section id="page-settings" class="page">
+  <div id="settings-root">
+    <section class="account-card" aria-label="Thông tin người dùng">
+      <div class="account-avatar" aria-hidden="true">👤</div>
+      <div class="account-summary"><small>TÀI KHOẢN CỦA TÔI</small><strong id="profile-display-name">Người sử dụng SaltGuard</strong><span>Thông tin cá nhân</span></div>
+      <button type="button" class="account-open" data-settings-view="profile" aria-label="Xem thông tin người dùng">›</button>
+    </section>
+  <div class="settings-group-heading">Tùy chọn ứng dụng</div>
+    <div class="settings-menu" aria-label="Các mục cài đặt">
+      <button type="button" class="settings-menu-item" data-settings-view="hours"><span class="menu-symbol">◷</span><span>Giờ tưới ưu tiên</span><span class="menu-arrow">›</span></button>
+      <button type="button" class="settings-menu-item" data-settings-view="device"><span class="menu-symbol">▣</span><span>Thông tin thiết bị</span><span class="menu-arrow">›</span></button>
+      <button type="button" class="settings-menu-item" data-settings-view="password"><span class="menu-symbol">▤</span><span>Đổi mật khẩu</span><span class="menu-arrow">›</span></button>
+      <button type="button" class="settings-menu-item" data-settings-view="terms"><span class="menu-symbol">≡</span><span>Điều khoản & chính sách sử dụng</span><span class="menu-arrow">›</span></button>
+      <div class="settings-menu-item toggle-line"><span class="menu-symbol">♧</span><span>Thông báo</span><button type="button" class="switch" id="notification-pref" role="switch" aria-checked="true" aria-label="Bật tắt tùy chọn thông báo trên giao diện"><span></span></button></div>
+      <button type="button" class="settings-menu-item" data-settings-view="logout"><span class="menu-symbol">↪</span><span>Đăng xuất</span><span class="menu-arrow">›</span></button>
+    </div>
+    <div class="settings-group-heading">Dành cho người có chuyên môn</div>
+    <a class="settings-menu expert-entry" href="/advanced-login?next=/expert"><span class="menu-symbol">⚙</span><span>Chế độ chuyên gia</span><span class="menu-arrow">›</span></a>
+  </div>
+
+  <section id="settings-subview" class="settings-subview" hidden aria-label="Chi tiết cài đặt">
+    <button type="button" id="settings-back" class="settings-back"><span aria-hidden="true">‹</span> Cài đặt</button>
+    <h2 id="settings-subtitle">Thông tin người dùng</h2>
+    <div id="settings-panel-profile" class="settings-subpanel" hidden>
+      <p class="settings-description">Thông tin của người sử dụng ứng dụng.</p>
+      <form id="profile-demo-form" class="profile-form">
+        <label>Họ và tên<input id="profile-name" type="text" maxlength="60" autocomplete="name" placeholder="Nhập họ và tên"></label>
+        <label>Số điện thoại<input id="profile-phone" type="tel" maxlength="20" autocomplete="tel" placeholder="Số điện thoại (không bắt buộc)"></label>
+        <label>Email<input id="profile-email" type="email" maxlength="100" autocomplete="email" placeholder="Email (không bắt buộc)"></label>
+        <button type="submit" class="primary-btn">Lưu thông tin</button>
+      </form>
+      <p class="demo-note">Bản mô phỏng: thông tin chỉ được lưu trong trình duyệt này, chưa có tài khoản trực tuyến.</p>
+    </div>
+    <div id="settings-panel-hours" class="settings-subpanel" hidden>
+      <p class="settings-description">Chọn các khoảng giờ được phép xét tưới tự động.</p>
+      <div id="sg-hours-list" class="sg-hours-list"></div>
+      <button type="button" id="sg-hours-add" class="outline-btn">+ Thêm khung giờ</button>
+      <button type="button" id="sg-save-hours" class="primary-btn sg-hours-save">Lưu giờ tưới</button>
+      <p id="sg-hours-message" class="settings-description" role="status"></p>
+    </div>
+    <div id="settings-panel-device" class="settings-subpanel" hidden>
+      <div class="settings-info-line"><span>Bộ điều khiển</span><strong>ESP32</strong></div>
+      <div class="settings-info-line"><span>Kết nối</span><strong id="settings-connection">Ngoại tuyến</strong></div>
+      <div class="settings-info-line"><span>Vận hành (công tắc vật lý)</span><strong id="settings-master">Chưa rõ</strong></div>
+      <div class="settings-info-line"><span>Dữ liệu gần nhất</span><strong id="device-last-seen">—</strong></div>
+      <p class="demo-note">Khi ngoại tuyến, App không xác nhận được trạng thái hiện tại của bơm. Mở Thông báo để xem chi tiết.</p>
+    </div>
+    <div id="settings-panel-password" class="settings-subpanel" hidden>
+      <p class="settings-description">Đổi mật khẩu tài khoản SaltGuard.</p>
+      <label class="mock-form-field">Mật khẩu hiện tại<input type="password" disabled placeholder="Chưa có tài khoản"></label>
+      <label class="mock-form-field">Mật khẩu mới<input type="password" disabled placeholder="Chưa hỗ trợ"></label>
+      <button type="button" class="primary-btn" disabled>Đổi mật khẩu</button>
+      <p class="demo-note">Chức năng tài khoản chưa triển khai trong MVP mô phỏng. PIN chuyên gia được quản lý riêng và không phải mật khẩu tài khoản.</p>
+    </div>
+    <div id="settings-panel-terms" class="settings-subpanel" hidden>
+      <h3>Sử dụng ứng dụng</h3><p>SaltGuard hỗ trợ theo dõi nước tưới, khu vực và tình trạng thiết bị. Người sử dụng chịu trách nhiệm với quyết định canh tác; hệ thống chỉ vận hành trong phạm vi được cấu hình.</p>
+      <h3>Thông tin và quyền riêng tư</h3><p>Đây là bản thử nghiệm mô phỏng chạy trên máy cục bộ và MQTT demo. Không nhập thông tin nhạy cảm, không dùng để vận hành bơm ngoài vườn thật.</p>
+      <p class="demo-note">Nội dung giới thiệu sản phẩm, chưa phải bộ điều khoản pháp lý hoặc chính sách bảo mật chính thức.</p>
+    </div>
+    <div id="settings-panel-logout" class="settings-subpanel" hidden>
+      <div class="signout-illustration" aria-hidden="true">↪</div><h3>Đăng xuất</h3>
+      <p>Ứng dụng hiện chưa có hệ thống đăng nhập người dùng. Vì vậy chưa có phiên tài khoản để đăng xuất.</p>
+      <button type="button" class="outline-btn" id="signout-back">Quay về Cài đặt</button>
+    </div>
+  </section>
+</section>
+<section id="page-alerts" class="page">
+<div class="section-row notice-section"><h2>Đang cần chú ý</h2><span id="active-notice-count" class="notice-caption"></span></div>
+<div id="alerts-active" class="alert-list"></div>
+<div class="section-row notice-section"><h2>Thông báo trước đây</h2></div>
+<div id="alerts-past" class="alert-list"></div>
+<button type="button" class="outline-btn notice-more" id="load-more-notices" hidden>Xem thêm thông báo</button>
+</section>
+<section id="page-journal" class="page">
+<div class="section-row"><h2>Hoạt động của vườn</h2><button type="button" class="link-btn" id="reload-journal">Làm mới ↻</button></div>
+<div class="journal-filter" role="group" aria-label="Lọc hoạt động"><button type="button" class="selected" data-kind="all">Tất cả</button><button type="button" data-kind="irrigation">Tưới</button><button type="button" data-kind="water">Nguồn nước</button><button type="button" data-kind="user">Thao tác</button></div>
+<div id="journal-list" class="journal-list"></div>
+</section>
+</main></div>
+<dialog id="action-dialog" class="action-dialog" aria-labelledby="action-title" aria-describedby="action-detail">
+  <div class="dialog-glyph" id="action-glyph" aria-hidden="true">✓</div>
+  <h2 id="action-title">Xác nhận</h2>
+  <p id="action-detail"></p>
+  <div id="action-choice-wrap" class="action-choice-wrap" hidden><label for="action-choice">Tạm ngưng đến khi</label><select id="action-choice"><option value="manual">Tôi bật lại thủ công</option><option value="15">Sau 15 phút</option><option value="30">Sau 30 phút</option><option value="60">Sau 1 giờ</option><option value="120">Sau 2 giờ</option><option value="240">Sau 4 giờ</option><option value="1440">Sau 24 giờ</option></select></div>
+  <div class="action-dialog-buttons">
+    <button id="action-cancel" type="button" class="outline-btn">Quay lại</button>
+    <button id="action-confirm" type="button" class="primary-btn">Đồng ý</button>
+  </div>
+</dialog>
+<div id="toast" class="toast" role="status" aria-live="polite"></div></body></html>

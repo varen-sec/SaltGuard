@@ -1,0 +1,3 @@
+# Developer / RC1 test dependencies (runtime dependencies remain in requirements.txt)
+-r requirements.txt
+pytest>=9,<10

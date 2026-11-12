@@ -1,0 +1,608 @@
+{
+  "version": 1,
+  "author": "SaltGuard Project",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 130, "left": 520, "attrs": {} },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "salt",
+      "top": 80,
+      "left": 1050,
+      "attrs": { "value": "170" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "canal",
+      "top": 230,
+      "left": 1050,
+      "attrs": { "value": "820" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "rain",
+      "top": 380,
+      "left": 1050,
+      "attrs": { "value": "0" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "soilZ1",
+      "top": 511.2,
+      "left": 1050,
+      "attrs": { "value": "205" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "soilZ2",
+      "top": 517.1,
+      "left": 1305.4,
+      "attrs": { "value": "820" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd",
+      "top": 150,
+      "left": 220,
+      "attrs": { "pins": "i2c", "i2cAddress": "0x27" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "buzzer",
+      "top": 330,
+      "left": 665,
+      "attrs": { "volume": "0.2" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "pause",
+      "top": 370,
+      "left": 210,
+      "attrs": { "color": "yellow", "label": "PAUSE", "key": "P" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "fault",
+      "top": 370,
+      "left": 320,
+      "attrs": { "color": "blue", "label": "MANUAL", "key": "F" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "refill",
+      "top": 370,
+      "left": 430,
+      "attrs": { "color": "red", "label": "ACK", "key": "R" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "saltlbl",
+      "top": 57.6,
+      "left": 1017.6,
+      "attrs": { "text": "ĐỘ MẶN KÊNH (ppt)" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "canallbl",
+      "top": 211.2,
+      "left": 1008,
+      "attrs": { "text": "MỰC NƯỚC KÊNH (%)" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "rainlbl",
+      "top": 355.2,
+      "left": 1017.6,
+      "attrs": { "text": "CƯỜNG ĐỘ MƯA (%)" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "btnlbl",
+      "top": 326.4,
+      "left": 278.4,
+      "attrs": { "text": "PAUSE     MANUAL     ACK" }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "pumpRelay",
+      "top": 1017.8,
+      "left": 259.2,
+      "attrs": { "transistor": "npn" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "pumpRun",
+      "top": 990,
+      "left": 431.6,
+      "attrs": { "color": "blue", "label": "BOM TUOI DANG CHAY" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "pumpRunRes",
+      "top": 1015,
+      "left": 431.6,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht",
+      "top": 230,
+      "left": 1340,
+      "attrs": { "temperature": "29", "humidity": "68" }
+    },
+    {
+      "type": "wokwi-ds18b20",
+      "id": "waterTemp",
+      "top": 380,
+      "left": 1340,
+      "attrs": { "temperature": "28" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "waterPullup",
+      "top": 416.75,
+      "left": 1238.4,
+      "attrs": { "value": "4700" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "relabel",
+      "top": 969.6,
+      "left": 259.2,
+      "attrs": { "text": "RELAY BOM TUOI CHUNG" }
+    },
+    {
+      "type": "wokwi-relay-module",
+      "id": "fillRelay",
+      "top": 1195,
+      "left": 261.6,
+      "attrs": { "transistor": "npn" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "fillRun",
+      "top": 1165,
+      "left": 431.6,
+      "attrs": { "color": "cyan", "label": "BOM NAP DANG CHAY" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "fillRunRes",
+      "top": 1190,
+      "left": 431.6,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "filllbl",
+      "top": 1140,
+      "left": 261.6,
+      "attrs": { "text": "RELAY BOM NAP BON" }
+    },
+    {
+      "type": "wokwi-slide-switch",
+      "id": "masterSwitch",
+      "top": 370,
+      "left": 100,
+      "attrs": { "value": "", "bounce": "0", "label": "ON / OFF TONG" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "master_label",
+      "top": 326.4,
+      "left": 38.4,
+      "attrs": { "text": "MASTER ON / OFF" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "zone1_title",
+      "top": 873.6,
+      "left": 1545.6,
+      "attrs": { "text": "VUNG Z1" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "zone2_title",
+      "top": 1113.6,
+      "left": 1536,
+      "attrs": { "text": "VUNG Z2" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "panel_ready",
+      "top": 60,
+      "left": 100,
+      "attrs": { "color": "green", "label": "SAN SANG" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "panel_ready_r",
+      "top": 110,
+      "left": 105,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "panel_water",
+      "top": 60,
+      "left": 245,
+      "attrs": { "color": "blue", "label": "DANG TUOI" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "panel_water_r",
+      "top": 110,
+      "left": 250,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "panel_notice",
+      "top": 60,
+      "left": 390,
+      "attrs": { "color": "yellow", "label": "CHU Y" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "panel_notice_r",
+      "top": 110,
+      "left": 395,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "panel_alarm",
+      "top": 60,
+      "left": 535,
+      "attrs": { "color": "red", "label": "SU CO" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "panel_alarm_r",
+      "top": 110,
+      "left": 540,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "panel_status_title",
+      "top": 9.6,
+      "left": 182.4,
+      "attrs": { "text": "DEN BAO: SAN SANG / TUOI / CHU Y / SU CO" }
+    },
+    { "type": "wokwi-74hc595", "id": "sr", "top": 642, "left": 667.84, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "tankSensor",
+      "top": 70,
+      "left": 1340,
+      "attrs": { "distance": "57.5" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "tanklbl",
+      "top": 48,
+      "left": 1324.8,
+      "attrs": { "text": "HC-SR04 | MUC BON 2000 L" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "vlabel",
+      "top": 691.2,
+      "left": 633.6,
+      "attrs": { "text": "74HC595  |  XUAT 5 LENH VAN Q0-Q4" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "lcdPullup",
+      "top": 250,
+      "left": 435,
+      "rotate": 90,
+      "attrs": { "value": "10000" }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "v1Servo",
+      "top": 821.2,
+      "left": 835.6,
+      "attrs": { "horn": "single", "hornColor": "#16a34a" }
+    },
+    {
+      "type": "chip-sg-servo-adapter",
+      "id": "v1ServoAdapter",
+      "top": 831.2,
+      "left": 1055.6,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "v2Servo",
+      "top": 1063.6,
+      "left": 835.2,
+      "attrs": { "horn": "single", "hornColor": "#16a34a" }
+    },
+    {
+      "type": "chip-sg-servo-adapter",
+      "id": "v2ServoAdapter",
+      "top": 1071.2,
+      "left": 1055.6,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-text",
+      "id": "v2_servo_title",
+      "top": 1017.6,
+      "left": 796.8,
+      "attrs": { "text": "V2  NGUON BON   |  TANK -> BOM TUOI" }
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "v3Servo",
+      "top": 833.2,
+      "left": 1305.6,
+      "attrs": { "horn": "single", "hornColor": "#16a34a" }
+    },
+    {
+      "type": "chip-sg-servo-adapter",
+      "id": "v3ServoAdapter",
+      "top": 840.8,
+      "left": 1526.4,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "v4Servo",
+      "top": 1070.8,
+      "left": 1306.4,
+      "attrs": { "horn": "single", "hornColor": "#16a34a" }
+    },
+    {
+      "type": "chip-sg-servo-adapter",
+      "id": "v4ServoAdapter",
+      "top": 1080.8,
+      "left": 1526.4,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-servo",
+      "id": "v5Servo",
+      "top": 1301.2,
+      "left": 835.6,
+      "attrs": { "horn": "single", "hornColor": "#16a34a" }
+    },
+    {
+      "type": "chip-sg-servo-adapter",
+      "id": "v5ServoAdapter",
+      "top": 1311.2,
+      "left": 1055.6,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-text",
+      "id": "v5_servo_title",
+      "top": 1257.6,
+      "left": 796.8,
+      "attrs": { "text": "V5  NAP BON     |  KENH -> BOM NAP -> BON" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "alarm_legend_title",
+      "top": 480,
+      "left": 9.6,
+      "attrs": { "text": "LOA BUZZER - MA AM THANH CANH BAO" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "alarm_legend_1",
+      "top": 528,
+      "left": -28.8,
+      "attrs": { "text": "KHAN CAP: 3 TIENG CAO-THAP-CAO  |  LOI: 2 TIENG DAI" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "alarm_legend_2",
+      "top": 576,
+      "left": -48,
+      "attrs": { "text": "MAT DU LIEU: 2 TIENG NGAN  |  THIEU NUOC: 1 TIENG TRAM" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "alarm_legend_3",
+      "top": 624,
+      "left": -57.6,
+      "attrs": { "text": "NAP BON LOI: 2 TIENG RAT NGAN  |  KENH MAN: 2 TIENG NHE" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "alarm_legend_4",
+      "top": 672,
+      "left": -86.4,
+      "attrs": { "text": "ACK DO NHAN NGAN: TAT LOA (KHONG XOA LOI)  |  GIU 4s: XOA KHAN CAP" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "v1Led",
+      "top": 951.2,
+      "left": 905.6,
+      "attrs": { "color": "green", "label": "V1 STATUS" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "v1LedRes",
+      "top": 999.2,
+      "left": 913.6,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "v2Led",
+      "top": 1191.2,
+      "left": 905.6,
+      "attrs": { "color": "blue", "label": "V2 STATUS" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "v2LedRes",
+      "top": 1239.2,
+      "left": 913.6,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "v3Led",
+      "top": 960.8,
+      "left": 1376.4,
+      "attrs": { "color": "green", "label": "V3 STATUS" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "v3LedRes",
+      "top": 1008.8,
+      "left": 1384.4,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "v4Led",
+      "top": 1200.8,
+      "left": 1376.4,
+      "attrs": { "color": "green", "label": "V4 STATUS" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "v4LedRes",
+      "top": 1248.8,
+      "left": 1384.4,
+      "attrs": { "value": "330" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "v5Led",
+      "top": 1426.8,
+      "left": 906.2,
+      "attrs": { "color": "yellow", "label": "V5 STATUS" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "v5LedRes",
+      "top": 1479.2,
+      "left": 913.6,
+      "attrs": { "value": "330" }
+    }
+  ],
+  "connections": [
+    [ "salt:VCC", "esp:3V3", "red", [] ],
+    [ "salt:GND", "esp:GND.2", "black", [] ],
+    [ "salt:SIG", "esp:D34", "green", [] ],
+    [ "canal:VCC", "esp:3V3", "red", [] ],
+    [ "canal:GND", "esp:GND.2", "black", [] ],
+    [ "canal:SIG", "esp:D35", "green", [] ],
+    [ "rain:VCC", "esp:3V3", "red", [] ],
+    [ "rain:GND", "esp:GND.2", "black", [] ],
+    [ "rain:SIG", "esp:D32", "green", [] ],
+    [ "lcd:SDA", "esp:D21", "green", [] ],
+    [ "lcd:SCL", "esp:D22", "blue", [] ],
+    [ "lcd:VCC", "esp:VIN", "red", [] ],
+    [ "lcd:GND", "esp:GND.1", "black", [] ],
+    [ "buzzer:2", "esp:D25", "purple", [] ],
+    [ "buzzer:1", "esp:GND.1", "black", [] ],
+    [ "pause:1.l", "esp:TX2", "orange", [] ],
+    [ "pause:2.r", "esp:GND.2", "black", [] ],
+    [ "fault:1.l", "esp:RX0", "orange", [] ],
+    [ "fault:2.r", "esp:GND.2", "black", [] ],
+    [ "refill:1.l", "esp:D14", "orange", [] ],
+    [ "refill:2.r", "esp:GND.2", "black", [] ],
+    [ "pumpRelay:VCC", "esp:VIN", "red", [] ],
+    [ "pumpRelay:GND", "esp:GND.1", "black", [] ],
+    [ "pumpRelay:IN", "esp:RX2", "orange", [] ],
+    [ "pumpRelay:COM", "esp:VIN", "red", [] ],
+    [ "pumpRelay:NO", "pumpRunRes:1", "blue", [] ],
+    [ "pumpRunRes:2", "pumpRun:A", "blue", [] ],
+    [ "pumpRun:C", "esp:GND.1", "black", [] ],
+    [ "dht:VCC", "esp:3V3", "red", [] ],
+    [ "dht:GND", "esp:GND.1", "black", [] ],
+    [ "dht:SDA", "esp:D13", "green", [] ],
+    [ "waterTemp:VCC", "esp:3V3", "red", [] ],
+    [ "waterTemp:GND", "esp:GND.1", "black", [] ],
+    [ "waterTemp:DQ", "esp:D0", "purple", [] ],
+    [ "waterPullup:1", "waterTemp:DQ", "purple", [] ],
+    [ "waterPullup:2", "esp:3V3", "red", [] ],
+    [ "fillRelay:VCC", "esp:VIN", "red", [] ],
+    [ "fillRelay:GND", "esp:GND.1", "black", [] ],
+    [ "fillRelay:IN", "esp:D4", "orange", [] ],
+    [ "fillRelay:COM", "esp:VIN", "red", [] ],
+    [ "fillRelay:NO", "fillRunRes:1", "blue", [] ],
+    [ "fillRunRes:2", "fillRun:A", "blue", [] ],
+    [ "fillRun:C", "esp:GND.1", "black", [] ],
+    [ "masterSwitch:2", "esp:VP", "orange", [] ],
+    [ "masterSwitch:1", "esp:GND.1", "black", [] ],
+    [ "masterSwitch:3", "esp:3V3", "red", [] ],
+    [ "esp:D5", "panel_ready_r:1", "green", [] ],
+    [ "panel_ready_r:2", "panel_ready:A", "green", [] ],
+    [ "panel_ready:C", "esp:GND.1", "black", [] ],
+    [ "esp:D2", "panel_water_r:1", "blue", [] ],
+    [ "panel_water_r:2", "panel_water:A", "blue", [] ],
+    [ "panel_water:C", "esp:GND.1", "black", [] ],
+    [ "esp:D15", "panel_notice_r:1", "yellow", [] ],
+    [ "panel_notice_r:2", "panel_notice:A", "yellow", [] ],
+    [ "panel_notice:C", "esp:GND.1", "black", [] ],
+    [ "esp:D12", "panel_alarm_r:1", "red", [] ],
+    [ "panel_alarm_r:2", "panel_alarm:A", "red", [] ],
+    [ "panel_alarm:C", "esp:GND.1", "black", [] ],
+    [ "esp:D18", "sr:DS", "orange", [] ],
+    [ "esp:D19", "sr:SHCP", "blue", [] ],
+    [ "esp:D23", "sr:STCP", "green", [] ],
+    [ "sr:VCC", "esp:3V3", "red", [] ],
+    [ "sr:GND", "esp:GND.1", "black", [] ],
+    [ "sr:OE", "esp:GND.1", "black", [] ],
+    [ "sr:MR", "esp:3V3", "red", [] ],
+    [ "tankSensor:VCC", "esp:VIN", "red", [] ],
+    [ "tankSensor:GND", "esp:GND.1", "black", [] ],
+    [ "tankSensor:TRIG", "esp:D26", "orange", [] ],
+    [ "tankSensor:ECHO", "esp:D27", "blue", [] ],
+    [ "lcdPullup:1", "esp:RX0", "green", [] ],
+    [ "lcdPullup:2", "esp:3V3", "red", [] ],
+    [ "sr:Q0", "v1ServoAdapter:IN", "green", [] ],
+    [ "v1ServoAdapter:OUT", "v1Servo:PWM", "purple", [] ],
+    [ "v1Servo:V+", "esp:VIN", "red", [] ],
+    [ "v1Servo:GND", "esp:GND.1", "black", [] ],
+    [ "sr:Q1", "v2ServoAdapter:IN", "green", [] ],
+    [ "v2ServoAdapter:OUT", "v2Servo:PWM", "purple", [] ],
+    [ "v2Servo:V+", "esp:VIN", "red", [] ],
+    [ "v2Servo:GND", "esp:GND.1", "black", [] ],
+    [ "sr:Q2", "v3ServoAdapter:IN", "green", [] ],
+    [ "v3ServoAdapter:OUT", "v3Servo:PWM", "purple", [] ],
+    [ "v3Servo:V+", "esp:VIN", "red", [] ],
+    [ "v3Servo:GND", "esp:GND.1", "black", [] ],
+    [ "sr:Q3", "v4ServoAdapter:IN", "green", [] ],
+    [ "v4ServoAdapter:OUT", "v4Servo:PWM", "purple", [] ],
+    [ "v4Servo:V+", "esp:VIN", "red", [] ],
+    [ "v4Servo:GND", "esp:GND.1", "black", [] ],
+    [ "sr:Q4", "v5ServoAdapter:IN", "green", [] ],
+    [ "v5ServoAdapter:OUT", "v5Servo:PWM", "purple", [] ],
+    [ "v5Servo:V+", "esp:VIN", "red", [] ],
+    [ "v5Servo:GND", "esp:GND.1", "black", [] ],
+    [ "sr:Q0", "v1LedRes:1", "green", [] ],
+    [ "v1LedRes:2", "v1Led:A", "green", [] ],
+    [ "v1Led:C", "esp:GND.1", "black", [] ],
+    [ "sr:Q1", "v2LedRes:1", "green", [] ],
+    [ "v2LedRes:2", "v2Led:A", "green", [] ],
+    [ "v2Led:C", "esp:GND.1", "black", [] ],
+    [ "sr:Q2", "v3LedRes:1", "green", [] ],
+    [ "v3LedRes:2", "v3Led:A", "green", [] ],
+    [ "v3Led:C", "esp:GND.1", "black", [] ],
+    [ "sr:Q3", "v4LedRes:1", "green", [] ],
+    [ "v4LedRes:2", "v4Led:A", "green", [] ],
+    [ "v4Led:C", "esp:GND.1", "black", [] ],
+    [ "sr:Q4", "v5LedRes:1", "green", [] ],
+    [ "v5LedRes:2", "v5Led:A", "green", [] ],
+    [ "v5Led:C", "esp:GND.1", "black", [] ],
+    [ "soilZ1:VCC", "esp:3V3", "red", [] ],
+    [ "soilZ1:GND", "esp:GND.2", "black", [] ],
+    [ "soilZ1:SIG", "esp:D33", "green", [] ],
+    [ "soilZ2:VCC", "esp:3V3", "red", [] ],
+    [ "soilZ2:GND", "esp:GND.2", "black", [] ],
+    [ "soilZ2:SIG", "esp:VN", "green", [] ]
+  ],
+  "dependencies": {}
+}
