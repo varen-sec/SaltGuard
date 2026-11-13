@@ -1,0 +1,31 @@
+name: Package SaltGuard full source
+on:
+  push:
+    branches: [saltguard-iot-ui-v5-20261113]
+  workflow_dispatch:
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build complete ZIP without runtime DB
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile, ZIP_DEFLATED
+          root=Path('.')
+          with ZipFile('SaltGuard_IoT_Complete_V5.zip','w',compression=ZIP_DEFLATED,compresslevel=8) as z:
+              for p in root.rglob('*'):
+                  if not p.is_file() or '.git' in p.parts or '.venv' in p.parts:
+                      continue
+                  if p.name=='SaltGuard_IoT_Complete_V5.zip' or p.suffix in {'.pyc'} or p.name.endswith(('.db','.db-shm','.db-wal')):
+                      continue
+                  z.write(p,Path('SaltGuard_IoT_Complete_V5')/p)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SaltGuard-IoT-Complete-V5
+          path: SaltGuard_IoT_Complete_V5.zip
+          retention-days: 30

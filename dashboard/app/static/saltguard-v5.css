@@ -1,0 +1,78 @@
+/* SaltGuard IoT V5 — friendly independent disclosures, compact journal, true 3-item navigation */
+:root{--sg-v5-green:#216c4d;--sg-v5-border:#dde9df;--sg-v5-radius:17px;}
+.workspace-nav,.workspace-nav.workspace-nav{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;justify-items:stretch;align-items:stretch;gap:0;}
+.workspace-nav .navitem{width:100%;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:9px 3px;white-space:normal;}
+.workspace-nav .navitem .navicon{line-height:1.15;}
+.sg-v5-zone,.sg-v5-extra{border:1px solid var(--sg-v5-border);border-radius:var(--sg-v5-radius);background:#fff;overflow:hidden;margin:11px 0;box-shadow:0 2px 10px rgba(16,65,43,.035);}
+.sg-v5-zone summary,.sg-v5-extra summary{list-style:none;display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding:15px 16px;gap:10px;color:#205841;min-height:66px;user-select:none;}
+.sg-v5-zone summary::-webkit-details-marker,.sg-v5-extra summary::-webkit-details-marker{display:none;}
+.sg-v5-zone[open]>summary,.sg-v5-extra[open]>summary{background:#f2f9f3;border-bottom:1px solid #e2eee5;}
+.sg-v5-zone-head{display:flex;align-items:center;gap:12px;min-width:0;flex:1;}
+.sg-v5-zone-head strong{display:block;font-size:15px;font-weight:800;}
+.sg-v5-zone-head small{display:block;font-size:12px;color:#698375;margin-top:3px;line-height:1.4;overflow-wrap:anywhere;}
+.sg-v5-zone-icon{width:37px;height:37px;flex:0 0 37px;border-radius:12px;background:#e5f4e9;display:grid;place-items:center;color:#22724f;font-size:18px;}
+.sg-v5-chevron{width:29px;height:29px;flex:0 0 29px;border-radius:50%;border:1px solid #d7e9da;background:#f5faf6;position:relative;transition:transform .18s ease,background .18s;}
+.sg-v5-chevron:before{content:"";position:absolute;left:9px;top:9px;width:8px;height:8px;border-right:2px solid #337253;border-bottom:2px solid #337253;transform:rotate(45deg);transition:transform .18s;}
+details[open]>summary .sg-v5-chevron{background:#deefe4;}
+details[open]>summary .sg-v5-chevron:before{transform:rotate(225deg);top:13px;}
+.sg-v5-zone summary:hover,.sg-v5-extra summary:hover{background:#f5faf6;}
+.sg-v5-zone summary:focus-visible,.sg-v5-extra summary:focus-visible{outline:3px solid #74b995;outline-offset:-3px;}
+#crop-config-zones .sg-v5-zone fieldset{border:0;margin:0;padding:13px 16px 17px;border-radius:0;}
+.sg-v5-visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;}
+#water-config-form .water-fields{display:flex!important;flex-direction:column!important;gap:10px!important;margin:13px 0;}
+#water-config-form .water-fields .sg-v5-zone{margin:0;}
+#water-config-form .water-fields .sg-v5-zone label{padding:10px 16px 2px;}
+#water-config-form .water-fields .sg-v5-zone label:last-child{padding-bottom:16px;}
+#water-config-form .water-fields .sg-v5-zone input{margin-top:6px;}
+.sg-v5-extra summary{min-height:54px;font-size:14px;font-weight:760;}
+.sg-v5-extra-body{padding:14px 16px 17px;}
+.sg-v5-extra-body input,.sg-v5-extra-body select{width:100%;max-width:100%;padding:10px;border:1px solid var(--sg-v5-border);border-radius:10px;background:#fff;}
+.sg-v5-calculator{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.sg-v5-calculator label{font-size:12px;color:#4c6757;display:block;}
+.sg-v5-calculator input{margin-top:5px;}
+.sg-v5-calculator p{grid-column:1/-1;}
+.sg-v5-note{font-size:12px;line-height:1.6;color:#6d8073;margin:9px 0;}
+.sg-v5-journal-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding:4px;background:#e9f2eb;border-radius:15px;position:sticky;top:61px;z-index:5;margin:12px 0;}
+.sg-v5-journal-tabs button{border:0;background:transparent;border-radius:12px;min-height:44px;padding:9px 6px;font:inherit;font-size:12px;font-weight:730;line-height:1.25;color:#607b67;cursor:pointer;}
+.sg-v5-journal-tabs button[aria-selected="true"]{background:white;color:#176941;box-shadow:0 2px 8px #173e2620;}
+.sg-v5-journal-tabs button:focus-visible{outline:2px solid #1a8a58;outline-offset:0;}
+.sg-v5-report-wrap{width:100%;}
+#sg-v5-report{width:100%;height:750px;min-height:300px;display:block;border:0;overflow:hidden;background:transparent;}
+#sg-v5-events[hidden]{display:none!important;}
+#sg-v5-events .journal-filter{margin-top:12px;}
+.sg-v5-embedded .mobile-topbar,.sg-v5-embedded .bottom-nav,.sg-v5-embedded .activity-head-meta{display:none!important;}
+.sg-v5-embedded .app-shell{max-width:none!important;min-height:0!important;padding:0!important;border:0!important;background:transparent!important;}
+.sg-v5-embedded .work-main{max-width:none!important;padding:0!important;margin:0!important;}
+.sg-v5-embedded .activity-controls{padding:12px!important;margin-bottom:10px;}
+.sg-v5-embedded .tech-panel{margin-bottom:11px!important;border-radius:15px!important;box-shadow:none!important;}
+.sg-v5-embedded .activity-summary,.sg-v5-embedded .activity-water,.sg-v5-embedded .activity-journal,.sg-v5-embedded .activity-trend-panel{display:none!important;}
+.sg-v5-embedded[data-sg-view="overview"] .activity-summary,.sg-v5-embedded[data-sg-view="overview"] .activity-water{display:block!important;}
+.sg-v5-embedded[data-sg-view="irrigation"] .activity-journal{display:block!important;}
+.sg-v5-embedded[data-sg-view="sensors"] .activity-trend-panel{display:block!important;}
+.sg-v5-embedded .activity-controls h2{font-size:14px;}
+.sg-v5-embedded .activity-controls .activity-panel-heading{margin-bottom:8px;}
+.sg-v5-diagnostics .sg-v5-diag-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.sg-v5-diag-actions button{background:#f6faf7;color:#245c41;border:1px solid #d4e6d7;border-radius:12px;min-height:44px;padding:8px 9px;font:inherit;font-weight:650;font-size:13px;cursor:pointer;}
+.sg-v5-diag-actions button:disabled{opacity:.5;}
+.sg-v5-diagnostics #sg-v5-diag-result{font-size:12px;color:#32614d;line-height:1.5;}
+.sg-custom-panel .sg-custom-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;}
+.sg-custom-panel .sg-parameter{padding:9px 10px!important;margin:0!important;min-width:0;}
+.sg-custom-panel .sg-param-head{display:flex!important;flex-wrap:wrap;align-items:center;gap:4px;}
+.sg-custom-panel .sg-param-head label{font-size:12px!important;}
+.sg-custom-panel .sg-number-unit{max-width:100%;margin-left:auto;}
+.sg-custom-panel .sg-number-unit input{max-width:75px!important;width:70px!important;min-width:0!important;padding:5px 6px!important;font-size:13px!important;min-height:30px!important;}
+.sg-custom-panel input[type=range]{width:100%;}
+.sg-custom-panel .sg-minmax{display:none!important;}
+.sg-v5-dialog{border:1px solid #dce7df;border-radius:20px;padding:23px;max-width:min(410px,calc(100vw - 36px));width:100%;box-shadow:0 12px 55px #173d253b;color:#224c36;}
+.sg-v5-dialog::backdrop{background:#142b20a3;backdrop-filter:blur(2px);}
+.sg-v5-dialog h2{font-size:19px;margin:0 0 8px;}
+.sg-v5-dialog p{font-size:14px;line-height:1.6;color:#687969;margin:0 0 14px;}
+.sg-v5-dialog input{width:100%;border:1px solid #bdd5c3;border-radius:12px;padding:11px;font-size:16px;box-sizing:border-box;}
+.sg-v5-dialog-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;}
+.sg-v5-dialog-actions button{border:1px solid #cadbcf;border-radius:11px;padding:10px 14px;background:#fff;color:#245841;font-weight:750;cursor:pointer;}
+.sg-v5-dialog-actions button[type=submit]{background:#236b48;color:white;border-color:#236b48;}
+.sg-v5-qr-step{border:1px solid #cfe5d3;background:#f2faf3;border-radius:13px;margin-top:10px;padding:12px;display:grid;gap:8px;}
+.sg-v5-qr-step label{display:grid;gap:5px;font-size:12px;color:#536c5b;}
+.sg-v5-qr-step select{padding:10px;border:1px solid #cfe2d2;border-radius:10px;}
+.sg-v5-qr-step p{margin:0;font-size:12px;color:#647c6b;}
+@media(max-width:380px){.sg-v5-journal-tabs button{font-size:11px;padding:7px 3px}.sg-v5-calculator{grid-template-columns:1fr}.sg-custom-panel .sg-param-head{display:block!important}}

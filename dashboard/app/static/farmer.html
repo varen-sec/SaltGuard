@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#edf5ef">
-<title>SaltGuard · Vườn của tôi</title><link rel="stylesheet" href="/static/farmer.css?v=phase38"><script defer src="/static/farmer.js?v=443"></script></head>
+<title>SaltGuard · Vườn của tôi</title><link rel="stylesheet" href="/static/farmer.css?v=phase38"><script defer src="/static/farmer.js?v=443"></script><link rel="stylesheet" href="/static/saltguard-v5.css?v=20261113b"><script defer src="/static/saltguard-v5.js?v=20261113b"></script></head>
 <body><div class="app-shell">
 <header class="mobile-topbar" role="banner">
   <div class="mobile-topbar-inner">
     <h1 id="page-title" class="mobile-topbar-title">Trang chủ</h1>
-    <span id="online-pill" class="connection-pill bad" role="status" aria-live="polite" aria-label="Trạng thái kết nối ESP32: Ngoại tuyến" title="ESP32 ngoại tuyến">Ngoại tuyến</span>
+    <span id="online-pill" class="connection-pill bad" role="status" aria-live="polite" aria-label="Trạng thái kết nối hệ thống tưới: Ngoại tuyến" title="Hệ thống tưới ngoại tuyến">Ngoại tuyến</span>
   </div>
 </header>
 
@@ -50,7 +50,7 @@
 </section>
 
 </section>
-<section id="page-zones" class="page"><div class="zone-page-sub">Chọn từng vườn để theo dõi và cho phép tưới tự động.</div><div class="zone-grid" id="detailed-zones"></div><div class="settings-details" style="margin-top:16px;padding:16px"><h2>Kết nối cảm biến vùng mới</h2><p class="settings-description">Quét mã QR trên cảm biến để đọc thông tin ghép nối. MVP hiện chỉ hỗ trợ tối đa hai vùng đã cấu hình; chưa có giao thức đăng ký cảm biến mới nên mã quét không tự tạo vùng đang hoạt động.</p><button type="button" class="outline-btn" id="qr-zone-open">Mở camera quét QR</button><div id="qr-zone-panel" hidden><video id="qr-zone-video" autoplay playsinline muted style="display:block;width:100%;max-width:400px;border-radius:12px;margin:12px 0;background:#202b25"></video><button type="button" class="outline-btn" id="qr-zone-close">Đóng camera</button><p id="qr-zone-status" role="status">Đang chuẩn bị camera...</p></div></div>
+<section id="page-zones" class="page"><div class="zone-page-sub">Chọn từng vườn để theo dõi và cho phép tưới tự động.</div><div class="zone-grid" id="detailed-zones"></div><div class="settings-details" style="margin-top:16px;padding:16px"><h2>Kết nối cảm biến vùng mới</h2><p class="settings-description">Đưa mã QR của cảm biến vào camera để nhận diện thiết bị và chọn khu vực. Việc kích hoạt cảm biến cần thiết bị tương thích.</p><button type="button" class="outline-btn" id="qr-zone-open">Mở camera quét QR</button><div id="qr-zone-panel" hidden><video id="qr-zone-video" autoplay playsinline muted style="display:block;width:100%;max-width:400px;border-radius:12px;margin:12px 0;background:#202b25"></video><button type="button" class="outline-btn" id="qr-zone-close">Đóng camera</button><p id="qr-zone-status" role="status">Đang chuẩn bị camera...</p></div></div>
 <section class="settings-details sg-valves" aria-label="Trạng thái năm van">
   <h2>Trạng thái 5 van</h2>
   <div class="sg-valve-grid" id="sg-valve-grid"></div>
@@ -98,7 +98,7 @@
       <p id="sg-hours-message" class="settings-description" role="status"></p>
     </div>
     <div id="settings-panel-device" class="settings-subpanel" hidden>
-      <div class="settings-info-line"><span>Bộ điều khiển</span><strong>ESP32</strong></div>
+      <div class="settings-info-line"><span>Bộ điều khiển</span><strong>Bộ tưới SaltGuard</strong></div>
       <div class="settings-info-line"><span>Kết nối</span><strong id="settings-connection">Ngoại tuyến</strong></div>
       <div class="settings-info-line"><span>Vận hành (công tắc vật lý)</span><strong id="settings-master">Chưa rõ</strong></div>
       <div class="settings-info-line"><span>Dữ liệu gần nhất</span><strong id="device-last-seen">—</strong></div>

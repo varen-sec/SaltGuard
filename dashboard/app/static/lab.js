@@ -10,12 +10,12 @@ customFields.forEach(([key,id,min,max])=>{const input=$(id),range=$(id+'-range')
 $('sim-preset').addEventListener('change',()=>{const id=$('sim-preset').value;if(presetInputs[id])fillCustom(presetInputs[id]);else if(id==='CUSTOM'){presetEdited=true;}else if(id==='STALE'){$('sim-message').textContent='TC07 sẽ ngắt truyền dữ liệu đến khi ESP32 phát hiện quá hạn (tối đa 120 giây thực); không sử dụng thanh trượt.';}});
 $('sim-default').onclick=()=>{const id=$('sim-preset').value;if(presetInputs[id])fillCustom(presetInputs[id]);else { fillCustom([20,25,.5,80,0,1500]);$('sim-preset').value='CUSTOM';presetEdited=true; }};
 $('sim-apply').onclick=async()=>{const id=$('sim-preset').value;if(id==='STALE'){
- if(!confirm('Thử TC07: tạm ngừng dữ liệu đến khi ESP32 phát hiện quá hạn (tối đa 120 giây thực) để kiểm tra bảo vệ?'))return;
+ if(!await window.SaltGuardDialog.confirm('Thử TC07: tạm ngừng dữ liệu mô phỏng để kiểm tra cơ chế bảo vệ?'))return;
  $('sim-apply').disabled=true;$('sim-message').textContent='Đang bắt đầu TC07…';
  try{await api('/api/twin/lab/test-stale',{method:'POST'});$('sim-message').textContent='TC07 đã được yêu cầu; chờ ESP32 vào SIMULATION rồi hệ thống sẽ tạm ngừng dữ liệu đến khi ESP32 báo quá hạn.';refreshTwin()}catch(e){$('sim-message').textContent='Không chạy được TC07: '+e.message}finally{$('sim-apply').disabled=false;}return;
  }
 let payload={};for(const [key,field,min,max] of customFields){const raw=$(field).value.trim(),val=Number(raw);if(raw===''||!Number.isFinite(val)||val<min||val>max){$('sim-message').textContent='Thông số không hợp lệ: '+key+' (từ '+min+' đến '+max+')';$(field).focus();return}payload[key]=val;}
-if(!confirm('Áp dụng các thông số đang hiển thị vào mô phỏng? ESP32 có thể bắt đầu tưới/nạp nếu điều kiện phù hợp.'))return;
+if(!await window.SaltGuardDialog.confirm('Áp dụng các thông số này vào mô phỏng? Hệ thống có thể bắt đầu tưới hoặc nạp bồn khi đủ điều kiện.'))return;
 $('sim-apply').disabled=true;$('sim-message').textContent='Đang gửi dữ liệu…';let baseline=null;try{baseline=await api('/api/snapshot')}catch(_e){};const applyStartedAt=Date.now()/1000;try{
 // Preset nguyên bản đi qua endpoint preset để giữ cơ chế ghi nhận TC và kết quả kiểm thử cũ.
 const original=presetInputs[id];const unchanged=id!=='CUSTOM' && !presetEdited && original && customFields.every((f,i)=>Number($(f[1]).value)===original[i]);
