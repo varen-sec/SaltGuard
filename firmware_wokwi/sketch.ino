@@ -1,16 +1,3 @@
-/*
- * SaltGuard MVP 1.0 - Farmer Experience / Smart Water Reserve (closed-loop) Digital Twin / MQTT (simulation only)
- * Simulation ONLY. Not an agricultural-grade sensing/control system.
- * - 3 knobs: simulated SALINITY, CANAL availability, RAIN.
- * - LOCAL Z1/Z2 soil moisture from dedicated ADC1 knobs; HC-SR04 tank level.
- * - Shared irrigation pump relay plus separate fill pump relay.
- * - DHT22 air temperature/humidity and DS18B20 water temperature (real simulated parts).
- * - Configurable 1/2-zone demonstration (Z command in DYNAMIC mode).
- * - Five logical valves driven by 74HC595 and visualized with servo adapters; LCD I2C, buzzer, 3 pushbuttons.
- * - TEST MODE replays 12 Tinkercad regression cases without turning knobs.
- * - Wi-Fi/MQTT demo: TWIN:ON/OFF, model inputs /twin/input and local safety controls.
- * - Public demo broker only; not for real farm operations.
- */
 #include <Arduino.h>
 #include <WiFi.h>
 #include <Preferences.h>
@@ -338,48 +325,92 @@ void outputsOff() {
 }
 // LOCAL reads ultrasonic water level. SIMULATION/PRESET retain backend-owned tank values.
 void sampleTankLevel(unsigned long now) {
-  // Presets and backend simulation own the reservoir level; only LOCAL uses HC-SR04.
-  if(testMode || twinMode || now-lastLevelSample<LEVEL_SAMPLE_MS) return;
-  lastLevelSample=now;
-  digitalWrite(TANK_TRIG_PIN,LOW);
+  if (testMode || twinMode || now - lastLevelSample < LEVEL_SAMPLE_MS)
+    return;
+
+  lastLevelSample = now;
+
+  digitalWrite(TANK_TRIG_PIN, LOW);
   delayMicroseconds(5);
-  digitalWrite(TANK_TRIG_PIN,HIGH);
+  digitalWrite(TANK_TRIG_PIN, HIGH);
   delayMicroseconds(12);
-  digitalWrite(TANK_TRIG_PIN,LOW);
-  // At 200cm the echo flight time is ~11.7ms. Use a more forgiving timeout.
-  unsigned long duration=pulseIn(TANK_ECHO_PIN,HIGH,30000UL);
-  float distance=(float)duration*0.0343f/2.0f;
-  bool valid=(duration!=0 && distance>=TANK_FULL_CM-2.0f &&
-              distance<=TANK_EMPTY_CM+2.0f);
-  static unsigned long lastDiagnostic=0;
-  if(!valid) {
-    tankLevelValid=false;
-    tankDistanceCm=NAN;
-    tankL=NAN; // NEVER use the previous 1500L as if it were a live measurement.
-    tankReady=false;
-    // Invalidate immediately; any previously active use of the reservoir stops.
-    if(state==REFILL_TANK || useTank(state)) {
-      activeZone=-1;
-      enter(REST,"TANK_SENSOR_INVALID",now);
+  digitalWrite(TANK_TRIG_PIN, LOW);
+
+  unsigned long duration = pulseIn(TANK_ECHO_PIN, HIGH, 30000UL);
+  float distance = (float)duration * 0.0343f / 2.0f;
+
+  bool valid = (
+    duration != 0 &&
+    distance >= TANK_FULL_CM - 2.0f &&
+    distance <= TANK_EMPTY_CM + 2.0f
+  );
+
+  // Serial diagnostics only.
+  // Do not change sensor sampling or safety behavior.
+  static unsigned long lastDiagnostic = 0;
+  static bool diagnosticInitialized = false;
+  static bool lastDiagnosticValid = false;
+
+  const unsigned long DIAGNOSTIC_INTERVAL_MS = 30000UL;
+
+  bool shouldLog =
+      !diagnosticInitialized ||
+      valid != lastDiagnosticValid ||
+      now - lastDiagnostic >= DIAGNOSTIC_INTERVAL_MS;
+
+  if (shouldLog) {
+    lastDiagnostic = now;
+    lastDiagnosticValid = valid;
+    diagnosticInitialized = true;
+  }
+
+  if (!valid) {
+    tankLevelValid = false;
+    tankDistanceCm = NAN;
+    tankL = NAN;
+    tankReady = false;
+
+    // Immediately stop reservoir use if sensor is invalid.
+    if (state == REFILL_TANK || useTank(state)) {
+      activeZone = -1;
+      enter(REST, "TANK_SENSOR_INVALID", now);
       outputsOff();
     }
-    if(now-lastDiagnostic>=1500UL) {
-      lastDiagnostic=now;
-      Serial.printf("HC-SR04 INVALID: echo=%luus raw=%.1fcm TRIG=%d ECHO=%d\n",
-                    duration,distance,TANK_TRIG_PIN,TANK_ECHO_PIN);
+
+    if (shouldLog) {
+      Serial.printf(
+        "HC-SR04 INVALID: echo=%luus raw=%.1fcm TRIG=%d ECHO=%d\n",
+        duration,
+        distance,
+        TANK_TRIG_PIN,
+        TANK_ECHO_PIN
+      );
     }
+
     return;
   }
-  tankDistanceCm=distance;
-  tankL=clampf((TANK_EMPTY_CM-distance)/(TANK_EMPTY_CM-TANK_FULL_CM)*TANK_CAPACITY,
-               0.0f,TANK_CAPACITY);
-  tankLevelValid=true;
-  if(now-lastDiagnostic>=1500UL) {
-    lastDiagnostic=now;
-    Serial.printf("HC-SR04 OK: echo=%luus distance=%.1fcm tank=%.0fL\n",
-                  duration,tankDistanceCm,tankL);
+
+  tankDistanceCm = distance;
+
+  tankL = clampf(
+    (TANK_EMPTY_CM - distance) /
+    (TANK_EMPTY_CM - TANK_FULL_CM) * TANK_CAPACITY,
+    0.0f,
+    TANK_CAPACITY
+  );
+
+  tankLevelValid = true;
+
+  if (shouldLog) {
+    Serial.printf(
+      "HC-SR04 OK: echo=%luus distance=%.1fcm tank=%.0fL\n",
+      duration,
+      tankDistanceCm,
+      tankL
+    );
   }
 }
+
 
 void updatePanelLeds() {
   bool alarmState=(emergencyLatched || state==FAULT || state==HOLD_NO_WATER);
