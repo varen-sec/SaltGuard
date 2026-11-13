@@ -20,3 +20,9 @@ Thumbs.db
 # Temporary files
 *.log
 *.tmp
+# Keep runtime SQLite private and local
+dashboard/data/*.db
+dashboard/data/*.db-shm
+dashboard/data/*.db-wal
+__pycache__/
+.pytest_cache/

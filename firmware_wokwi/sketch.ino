@@ -1113,9 +1113,9 @@ void updateLCD() {
   } else if(injectedFault||state==FAULT) {
     snprintf(a,sizeof(a),"LOI HE THONG"); snprintf(b,sizeof(b),"BOM + VAN DA TAT");
   } else if(state==HOLD_NO_WATER && strcmp(reason,"TWIN_INPUT_STALE")==0) {
-    snprintf(a,sizeof(a),"MAT DL MO PHONG"); snprintf(b,sizeof(b),"BOM + VAN DA TAT");
+    snprintf(a,sizeof(a),"DL MO PHONG CU"); snprintf(b,sizeof(b),"BOM + VAN DA TAT");
   } else if(state==HOLD_NO_WATER) {
-    snprintf(a,sizeof(a),"KHONG CO NGUON"); snprintf(b,sizeof(b),"KENH %.1f BON %.0fL",saltPpt,tankL);
+    snprintf(a,sizeof(a),"KHONG CO NGUON"); snprintf(b,sizeof(b),"MAN %.1f B %.0fL",saltPpt,tankL);
   } else if(paused||state==PAUSE) {
     snprintf(a,sizeof(a),"DA TAM DUNG"); snprintf(b,sizeof(b),"NUT VANG: TIEP");
   } else if(showManualNotice) {
@@ -1124,26 +1124,26 @@ void updateLCD() {
   } else if(now-masterEnabledAt<LCD_WELCOME_MS) {
     // Power-on greeting, only when MASTER is turned ON and no safety issue is active.
     snprintf(a,sizeof(a),"SALTGUARD IOT");
-    snprintf(b,sizeof(b),"HE THONG SAN SANG");
+    snprintf(b,sizeof(b),"DA SAN SANG");
   } else if(watering(state)) {
     snprintf(a,sizeof(a),"DANG TUOI VUNG %d",activeZone+1);
     snprintf(b,sizeof(b),"NGUON: %s",useCanal(state)?"NUOC KENH":"NUOC BON");
   } else if(state==REFILL_TANK) {
     snprintf(a,sizeof(a),"DANG NAP BON");snprintf(b,sizeof(b),"MUC BON: %.0fL",tankL);
   } else if(state==REST) {
-    snprintf(a,sizeof(a),"DANG NGHI AN TOAN");
+    snprintf(a,sizeof(a),"NGHI AN TOAN");
     snprintf(b,sizeof(b),"CHO KIEM TRA LAI");
   } else if(strcmp(reason,"WAIT_IRRIGATION_WINDOW")==0) {
     snprintf(a,sizeof(a),"DAT CAN NUOC");snprintf(b,sizeof(b),"CHO GIO UU TIEN");
   } else if(strcmp(reason,"REFILL_CANAL_UNSAFE")==0 && tankL<=REFILL_START_L) {
-    snprintf(a,sizeof(a),"CHUA THE NAP BON");snprintf(b,sizeof(b),"KENH KHONG AN");
+    snprintf(a,sizeof(a),"KHONG NAP DUOC");snprintf(b,sizeof(b),"KENH KHONG AN");
   } else if(canalLocked && (page%2==0)) {
     snprintf(a,sizeof(a),"KENH NHIEM MAN");snprintf(b,sizeof(b),"DO MAN: %.1fppt",saltPpt);
   } else if(page%2==0) {
     snprintf(a,sizeof(a),"DAT DU AM - CHO");
     snprintf(b,sizeof(b),"Z1 %.0f%%  Z2 %.0f%%",soil[0],soil[1]);
   } else {
-    snprintf(a,sizeof(a),"DANG GIAM SAT");
+    snprintf(a,sizeof(a),"GIAM SAT VUON");
     snprintf(b,sizeof(b),"BON: %.0f/2000L",tankL);
   }
   writeLCD(0,a);writeLCD(1,b);

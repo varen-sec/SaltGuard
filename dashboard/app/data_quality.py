@@ -29,7 +29,7 @@ def evaluate(latest, age_seconds, broker_connected, *, now=None):
             'signals':checks,'issues':issues}
 
 ADVICE={
- 'OFFLINE':'Kiểm tra Wokwi, kết nối mạng và MQTT. Không suy đoán trạng thái bơm khi chưa có dữ liệu mới.',
+ 'OFFLINE':'Hệ thống chưa cập nhật dữ liệu mới. Vui lòng kiểm tra nguồn điện và kết nối bộ điều khiển. Không suy đoán trạng thái bơm khi dữ liệu quá hạn.',
  'FAULT':'Kiểm tra mã lỗi và tín hiệu cảm biến. Chỉ cho chạy lại khi nguyên nhân đã được xử lý.',
  'WATER':'Kiểm tra độ mặn, mức bồn và dữ liệu đầu vào trước khi yêu cầu tưới lại.',
  'CANAL':'Kiểm tra độ mặn nước kênh và khả năng sử dụng nguồn bồn.',

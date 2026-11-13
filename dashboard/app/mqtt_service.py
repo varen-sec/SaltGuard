@@ -9,6 +9,7 @@ import logging
 import uuid
 import time
 from .storage import Storage
+from .water_config_registry import WaterConfigRegistry
 
 log = logging.getLogger('saltguard.mqtt')
 ALLOWED_COMMANDS = {'TEST:FLOW:ZERO', 'TEST:VALVE:STUCK', 'TEST:SENSOR:BAD', 'TEST:CLEAR', 'DEMO:CUSTOM:START', 'DEMO:CUSTOM:UPDATE', 'DEMO:CUSTOM:END', 'EMERGENCY:STOP', 'DEMO:TC01:START', 'DEMO:TC01:END', 'DEMO:TC02:START', 'DEMO:TC02:END', 'DEMO:TC03:START', 'DEMO:TC03:END', 'DEMO:TC04:START', 'DEMO:TC04:END', 'DEMO:TC05:START', 'DEMO:TC05:END', 'DEMO:TC06:START', 'DEMO:TC06:END', 'DEMO:TC07:START', 'DEMO:TC07:END', 'STATUS', 'ZONES:1', 'ZONES:2', 'TWIN:ON', 'TWIN:OFF', 'FILL:REQUEST', 'FILL:CANCEL', 'FILL:AUTO:ON', 'FILL:AUTO:OFF', 'ZONE:1:HOLD', 'ZONE:1:RESUME', 'ZONE:2:HOLD', 'ZONE:2:RESUME', 'ZONE:1:ONCE', 'ZONE:2:ONCE', 'ZONE:1:CANCEL_ONCE', 'ZONE:2:CANCEL_ONCE'}
@@ -16,6 +17,7 @@ ALLOWED_COMMANDS = {'TEST:FLOW:ZERO', 'TEST:VALVE:STUCK', 'TEST:SENSOR:BAD', 'TE
 class MqttService:
     def __init__(self, storage: Storage, host: str, port: int, root: str):
         self.storage = storage
+        self.water_config = WaterConfigRegistry(storage)
         self.host, self.port, self.root = host, port, root
         self.connected = False
         self.started = False
@@ -84,6 +86,7 @@ class MqttService:
                 if data.get('device') != self.root:
                     return
                 self.storage.ingest(data)
+                self.water_config.on_telemetry(data)
                 # The firmware owns all pump permission. MQTT only provides a wall-clock
                 # reference. Do not translate time sync into an ON / RESUME command.
                 if (self.connected and self.client and
@@ -101,6 +104,7 @@ class MqttService:
                 if str(ack.get('command','')).startswith('CLOCK:'):
                     return  # internal clock sync, not a farmer operation
                 self.last_ack = ack
+                self.water_config.on_ack(ack)
                 outcome = 'Chấp nhận' if ack.get('accepted') else 'Từ chối'
                 self.storage.event('ack', 'info' if ack.get('accepted') else 'warning',
                    f"{outcome}: {str(ack.get('command'))[:40]}", str(ack.get('message',''))[:180], ack)
@@ -116,8 +120,10 @@ class MqttService:
             raise ValueError('Lệnh không được hỗ trợ trong SaltGuard MVP')
         if not self.connected or not self.client:
             raise ConnectionError('Backend chưa kết nối MQTT')
+        self.water_config.requested(cmd)
         info = self.client.publish(self._topics['cmd'], payload=cmd, qos=0, retain=False)
         if info.rc != 0:
+            self.water_config.cancel(cmd)
             raise ConnectionError('Gửi MQTT thất bại (rc=' + str(info.rc) + ')')
         self.storage.event('command', 'info', 'Đã gửi: ' + cmd, 'Đang chờ ESP32 phản hồi')
         return {'sent': True, 'command': cmd, 'note': 'Lệnh đã được chuyển cho broker; chờ ACK từ ESP32'}

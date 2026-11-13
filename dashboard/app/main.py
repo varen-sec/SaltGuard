@@ -639,3 +639,36 @@ def farmer_summary():
 
 # Fixed-time schedules and timed manual WATER requests are intentionally absent
 # from MVP. Legacy database schedules are disabled in lifespan() before MQTT starts.
+
+
+# Confirmed water-plan storage: never auto-restore on reconnect.
+@app.get('/api/water/config')
+def water_config_status():
+    s = snapshot()
+    return bridge.water_config.status(s['latest'], s['device_online'] and s['broker_connected'])
+
+@app.post('/api/water/config/restore')
+def restore_water_config(request: Request):
+    if not access.authenticated(request):
+        raise HTTPException(status_code=403, detail='Cần quyền Chuyên môn')
+    s = snapshot()
+    if not (s['device_online'] and s['broker_connected']):
+        raise HTTPException(status_code=503, detail='Hệ thống tưới chưa kết nối')
+    d = s['latest'] or {}
+    if d.get('pump_on') or d.get('paused') or d.get('paused_session_pending') or d.get('tank_fill_on'):
+        raise HTTPException(status_code=409, detail='Chờ phiên hoạt động kết thúc')
+    info = bridge.water_config.status(d, True)
+    if info['pending']:
+        raise HTTPException(status_code=409, detail='Có lệnh đang chờ xác nhận')
+    if not info['saved']:
+        raise HTTPException(status_code=404, detail='Chưa có định mức đã xác nhận')
+    if not info['mismatch']:
+        return {'confirmed': True, 'status': 'ALREADY_SYNCED'}
+    cmd = 'WATER:' + ','.join(str(int(round(x * 10))) for x in info['saved']['values'])
+    try:
+        outcome = bridge.command(cmd)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except ConnectionError as exc:
+        raise HTTPException(status_code=503, detail=str(exc)) from exc
+    return {'confirmed': False, 'status': 'PUBLISHED_AWAITING_CONFIRMATION', **outcome}
